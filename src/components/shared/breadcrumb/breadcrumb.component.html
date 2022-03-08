@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+  <li *ngFor="let breadcrumb of breadcrumbs"
+    [routerLink]="breadcrumb.isRedirect?  breadcrumb.url : null"
+    queryParamsHandling="merge" routerLinkActive="router-link-active">
+    {{ breadcrumb.label }}
+  </li>
+</ol>

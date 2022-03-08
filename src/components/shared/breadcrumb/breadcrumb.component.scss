@@ -1,0 +1,48 @@
+@import 'src/styles.scss';
+app-breadcrumb {
+  .breadcrumb {
+    line-height: 1.5rem;
+    padding: 0;
+    li {
+      color: $subColor3;
+      &:nth-of-type(1) {
+        &:before {
+          @include iconFont('\e69b');
+          font-size: 9px;
+          color: $common_White;
+          border-radius: 50%;
+          background: $subColor3;
+          padding: 0.2rem;
+          margin-right: 0.3rem;
+        }
+      }
+      &:not(:nth-last-of-type(1)) {
+        cursor:  pointer;
+        &:after {
+          @extend .fontsize-2;
+          @include iconFont('\e649');
+          font-weight: bold;
+          color: $subColor3;
+          margin: 0 0.5rem;
+        }
+        &:hover {
+          color: $mainColor3;
+          &:nth-of-type(1) {
+            &:before {
+              background: $mainColor3;
+            }
+          }
+        }
+      }
+      &:nth-last-of-type(1) {
+        color: $mainColor1;
+        &:before {
+          background: $mainColor1;
+        }
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

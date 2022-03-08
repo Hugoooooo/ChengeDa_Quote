@@ -1,0 +1,193 @@
+@import 'src/styles.scss';
+
+app-main {
+    .version-css{
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #005caf;
+      font-size: 1rem;
+    }
+    button {
+        border: 0;
+        &:focus {
+            outline: none;
+        }
+    }
+    header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 70px;
+        z-index: 1000;
+        background: $common_White;
+        padding: 0 1rem;
+        .menuBtn {
+            height: 70px;
+            width: 45px;
+            background: url('/assets/imgs/menu.png') no-repeat left 50% center;
+            background-size: 1rem;
+        }
+        .headerTitle {
+            @extend .fontsize4;
+            display: inline-block;
+            vertical-align: top;
+            color: $mainColor1;
+            line-height: 30px;
+            margin: 20px 0;
+            padding: 0 1rem 0 0;
+            border-right: 2px solid $subColor2;
+        }
+        div {
+            width: calc(100% - 2rem - 45px - 7rem - 2rem);
+            display: inline-block;
+            vertical-align: top;
+            text-align: right;
+            margin: 15px 0;
+            position: relative;
+            button {
+                vertical-align: top;
+                color: $mainColor1;
+                background: transparent;
+                padding: 0 10px;
+                i {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 40px !important;
+                    margin-right: 5px;
+                    &:before {
+                        font-size: 1.4rem !important;
+                    }
+                }
+                &:active {
+                    color: $mainColor3;
+                }
+            }
+            p {
+                display: inline-block;
+                line-height: 30px;
+                margin: 0;
+                &.nameCircle {
+                    width: 40px;
+                    vertical-align: middle;
+                    text-align: center;
+                    line-height: 40px;
+                    color: $common_White;
+                    border-radius: 50%;
+                    background: $subColor3;
+                }
+            }
+            .name {
+                @extend .fontsize-2;
+                width: 10rem;
+                vertical-align: middle;
+                color: $mainColor2;
+                border-right: 2px solid $subColor2;
+                margin: 5px 0.5rem 5px 0;
+                padding: 0 1rem;
+                p {
+                    width: 100%;
+                    white-space:nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    line-height: 1rem;
+                    margin: 0;
+                }
+                span {
+                    width: 100%;
+                    white-space:nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;
+                    text-align: left;
+                    line-height: 1rem;
+                }
+            }
+        }
+    }
+    .main-container{
+        margin-top: 70px;
+        height: calc(100vh - 70px);
+        .left-container {
+            position: fixed;
+            width: calc(1rem + 45px + 7rem + 1rem + 1.8rem);
+            height: calc(100vh - 70px);
+            z-index: 100;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background: $mainColor1;
+            transition: all 0.2s;
+        }
+        .right-container {
+            overflow-y: scroll;
+            height: 100%;
+            min-height: 100%;
+            background: $subColor2;
+            transition: all 0.2s;
+            margin-left: calc(1rem + 45px + 7rem + 1rem + 1.8rem);
+            padding: 1.5rem;
+        }
+        &.menuClose {
+            .left-container { width: 4rem; }
+            .right-container { margin-left: calc(1rem + 45px); }
+        }
+    }
+    @media(max-width: 768px) {
+        .main-container {
+            .left-container { left: 0; }
+            .right-container { margin-left: 0; }
+            &.menuClose {
+                .left-container {
+                    left: calc((1rem + 45px + 7rem + 1rem + 1.8rem)*-1);
+                    width: calc(1rem + 45px + 7rem + 1rem + 1.8rem);
+                }
+                .right-container { margin-left: 0; }
+            }
+            &:not(.menuClose) .left-container:before {
+                content: "";
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                z-index: -1;
+                background: transparent;
+            }
+        }
+    }
+    @media(max-width: 500px) {
+        header {
+            padding: 0 0 0 1rem;
+            div {
+                button {
+                    line-height: 40px;
+                    padding: 0;
+                    i {
+                        display: none;
+                    }
+                }
+                .name {
+                    width: 7rem;
+                    padding: 0 0.5rem;
+                }
+            }
+        }
+    }
+    @media(max-width: 420px) {
+        header {
+            div {
+                p {
+                    &.nameCircle {
+                        margin-right: 0.5rem;
+                    }
+                }
+                .name {
+                    display: none;
+                }
+            }
+        }
+    }
+}

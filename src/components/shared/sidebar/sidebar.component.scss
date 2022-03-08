@@ -1,0 +1,76 @@
+@import 'src/styles.scss';
+app-sidebar {
+    .sidebar-area {
+        @extend .fontsize-2;
+        color: $common_White;
+        padding: 1.5rem 0;
+        .main {
+            width: calc(1rem + 45px + 7rem + 1rem + 1.8rem);
+            list-style: none;
+            padding: 0;
+            > li {
+                overflow: hidden;
+                height: 3rem;
+                line-height: 3rem;
+                background: $mainColor1;
+                cursor:  pointer;
+                padding: 0.5rem 1.5rem;
+                i {
+                    margin-right: 1.5rem;
+                    &:before {
+                        font-size: 1rem !important;
+                    }
+                }
+                .sub {
+                    display: none;
+                }
+                &.mainActive {
+                    height: auto;
+                    font-weight: bold;
+                    background: $mainColor2;
+                    transition: all 0.2s;
+                    .sub {
+                        display: block;
+                        font-weight: initial;
+                        list-style: none;
+                        padding: 0;
+                        > li {
+                            position: relative;
+                            line-height: 1.5rem;
+                            cursor:  pointer;
+                            padding: 0.5rem 0 0.5rem 2.5rem;
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                width: 7px;
+                                height: 7px;
+                                top: calc((100% - 7px)/2);
+                                left: 5px;
+                                border-radius: 50%;
+                                background: $mainColor1;
+                            }
+                            &.subActive {
+                                font-weight: initial;
+                                &:before {
+                                    background: $mainColor3;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .version-css{
+      text-align: center;
+      color: #fff;
+      font-size: 0.7rem;
+      background: #032663;
+      margin-bottom: 0;
+      padding: 0.5rem 0;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+    }
+}

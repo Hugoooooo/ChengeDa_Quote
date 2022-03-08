@@ -1,0 +1,113 @@
+<div class="block">
+  <div class="content half paddingTop0">
+    <div class="item">
+      <span class="itemTitle">承辦人</span>
+      <div>
+        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="business" [data]="businessDDL"
+          [defaultItem]="{'text':'請選擇','value':null}" [textField]="'text'" [valueField]="'value'">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+    <div class="item"></div>
+    <div class="item">
+      <span class="itemTitle">工程名稱</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='project'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">工程地址</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='project'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">客戶名稱</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='name'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">聯絡人</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='contactName'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">行動電話</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='cellPhone'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">電話</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='phone'>
+      </div>
+    </div>
+  </div>
+  <div class="content half paddingBottom0">
+    <div class="item itemBlock">
+      <button class="lBtn Green" (click)="addQuote()">新增</button>
+    </div>
+
+    <div>
+      <div class="editList plural border-bottom-1d" *ngFor="let quote of quoteList; let i = index">
+        <div>
+          <div class="content half paddingTop0">
+            <p class="blockSubTitle">條列項目區塊 - {{i + 1}}</p>
+            <div class="item">
+              <span class="itemTitle">品項</span>
+              <div>
+                <kendo-autocomplete [data]="quote.productList" [(ngModel)]="quote.product" [filterable]="true"
+                  (filterChange)="onAutoInputFilter($event, quote)" placeholder="請輸入">
+                </kendo-autocomplete>
+              </div>
+            </div>
+            <div class="item">
+              <span class="itemTitle">規格</span>
+              <div>
+                <input type="text" placeholder="請輸入" [(ngModel)]='quote.pattern'>
+              </div>
+            </div>
+            <div class="item">
+              <span class="itemTitle">數量</span>
+              <div>
+                <input type="number" placeholder="請輸入" [(ngModel)]='quote.quantity' (change)="calcAmount(quote)">
+              </div>
+            </div>
+            <div class="item">
+              <span class="itemTitle">單價</span>
+              <div>
+                <input type="number" placeholder="請輸入" [(ngModel)]='quote.unitPrice' (change)="calcAmount(quote)">
+              </div>
+            </div>
+            <div class="item">
+              <span class="itemTitle">金額</span>
+              <div>
+                <input type="number" placeholder="請輸入" [(ngModel)]='quote.amount'>
+              </div>
+            </div>
+            <div class="item">
+              <span class="itemTitle">備註</span>
+              <div>
+                <input type="text" placeholder="請輸入" [(ngModel)]='quote.remark'>
+              </div>
+            </div>
+            <div class="item itemBlock textCenter marginTop">
+              <button class="sBtn Red" (click)="removeItem(i)">刪除此區塊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item itemBlock textCenter marginTop1">
+      <button class="lBtn Green" style="float: left;" *ngIf="quoteList.length>2" (click)="addQuote()">新增</button>
+      <button class="lBtn Yellow">預覽</button>
+      <button class="lBtn Gray" (click)="reset()">重置</button>
+      <button class="lBtn Blue" (click)="export()">匯出</button>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

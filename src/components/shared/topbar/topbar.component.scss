@@ -1,0 +1,81 @@
+// @import 'src/styles.scss';
+
+// app-topbar {
+//     button {
+//         border: 0;
+//         &:focus {
+//             outline: none;
+//         }
+//     }
+//     header {
+//         position: fixed;
+//         top: 0;
+//         right: 0;
+//         left: 0;
+//         height: 70px;
+//         z-index: 1000;
+//         background: $common_White;
+//         padding: 0 1rem;
+//         .menuBtn {
+//             height: 70px;
+//             width: 45px;
+//             background: url(../../../assets/imgs/menu.png) no-repeat left 50% center;
+//             background-size: 1rem;
+//         }
+//         .headerTitle {
+//             @extend .fontsize4;
+//             display: inline-block;
+//             vertical-align: top;
+//             color: $mainColor1;
+//             line-height: 30px;
+//             margin: 20px 0;
+//             padding: 0 1rem 0 0;
+//             border-right: 2px solid $subColor2;
+//         }
+//         div {
+//             width: calc(100% - 2rem - 45px - 7rem - 1rem);
+//             display: inline-block;
+//             vertical-align: top;
+//             text-align: right;
+//             margin: 15px 0;
+//             button {
+//                 background: transparent;
+//                 vertical-align: top;
+//                 color: red;
+//                 padding: 0 10px;
+//                 i {
+//                     line-height: 40px !important;
+//                     &:before {
+//                         font-size: 1.4rem !important;
+//                     }
+//                 }
+//                 &:active {
+//                     color: red;
+//                 }
+//             }
+//             p {
+//                 display: inline-block;
+//                 line-height: 30px;
+//                 margin: 0;
+//                 &.name {
+//                     @extend .fontsize-2;
+//                     color: $mainColor2;
+//                     border-left: 2px solid $subColor2;
+//                     margin: 5px 0 5px 0.5rem;
+//                     padding: 0 1rem;
+//                     span {
+//                         margin: 0 0 0 0.5rem;
+//                     }
+//                 }
+//                 &.nameCircle {
+//                     width: 40px;
+//                     text-align: center;
+//                     color: $common_White;
+//                     line-height: 40px;
+//                     background: $subColor3;
+//                     border-radius: 50%;
+//                 }
+//             }
+//         }
+//     }
+// }

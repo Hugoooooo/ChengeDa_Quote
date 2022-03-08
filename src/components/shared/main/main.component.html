@@ -1,0 +1,15 @@
+<!-- 登入平台後的共用模板 -->
+<ng-container *ngIf="display">
+  <header>
+    <app-topbar [collapse]="collapse" (collapseEvent) = "collapseEvent($event)"></app-topbar>
+  </header>
+  <div [class]="collapse ? 'main-container' : 'main-container menuClose'">
+    <div class="left-container">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="right-container" #rDiv>
+      <app-breadcrumb></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-container>

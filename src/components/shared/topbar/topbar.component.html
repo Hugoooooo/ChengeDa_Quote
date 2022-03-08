@@ -1,0 +1,11 @@
+<button class="menuBtn" (click)="clickMenu()"></button>
+<p class="headerTitle">顧客數據平台</p>
+<div>
+  <span class="version-css">{{version}}</span>
+    <p class="nameCircle">{{this.domainProvider.getStorage('name')?.charAt(0)?.toUpperCase()}}</p>
+    <div class="name">
+      <p>{{this.domainProvider.getStorage('roleName')}}</p>
+      <span>{{this.domainProvider.getStorage('name')}}</span>
+    </div>
+    <button (click)="logout()"><i class="icon-shift-right"></i>登出</button>
+</div>

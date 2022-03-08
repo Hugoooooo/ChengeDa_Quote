@@ -1,1 +1,110 @@
-/* You can add global styles to this file, and also import other style files */
+@mixin font-size-map($font-size-map) {
+  @each $breakpoint, $font-size in $font-size-map {
+      @if $breakpoint == null {
+          font-size: $font-size;
+      } @else {
+        @media (max-width: $breakpoint) {
+            font-size: $font-size;
+        }
+      }
+  }
+}
+$html-font-size: (null:16px, 768px:14px, 460px:12px);
+
+$mainColor1: #04368F;
+$mainColor2: #005CAF;
+$mainColor3: #2F95F0;
+
+$subColor1: #F2F7FD;
+$subColor2: #E9EEF4;
+$subColor3: #909AB3;
+$subColor4: #FF6358;
+$subColor5: #FFBC30;
+$subColor6: #00B429;
+$subColor7: #2C2C2C;
+$subColor8: #DEE2E6;
+$subColor9: #6C6C6C;
+$subColor10: #6AA6AF;
+
+$common_White: #FFFFFF;
+$common_LGray: #D3D3D3;
+$common_Gray: #A0A0A0;
+$common_DGray: #646464;
+$common_Black: #000000;
+$common_Red: #FF0000;
+$common_Blue: #1155CC;
+
+$imgUrl: 'src/assets/imgs/';
+
+/* fontsize commmon  ------------------------------------------------------------------------- */
+//字體設定，以1rem為單位，做2px字級的調整
+.fontsize-2 { font-size: 0.875rem; }
+.fontsize0 { font-size: 1rem; }
+.fontsize2 { font-size: 1.125rem; }
+.fontsize4 { font-size: 1.250rem; }
+.fontsize6 { font-size: 1.375rem; }
+.fontsize8 { font-size: 1.500rem; }
+.fontsize10 { font-size: 1.625rem; }
+.fontsize12 { font-size: 1.750rem; }
+.fontsize14 { font-size: 1.875rem; }
+.fontsize26 { font-size: 2.625rem; }
+
+.Blue { background: $mainColor2 !important; }
+.LightBlue { background: $mainColor3 !important; }
+.Red { background: $subColor4 !important; }
+.Green { background: $subColor6 !important; }
+.Yellow { background: $subColor5 !important; }
+.Gray { background: $subColor3 !important; }
+.btnIbonGreen { background: $subColor10 !important; }
+.btnIbonGray { background: $subColor9 !important; }
+
+.textLeft { text-align: left !important; }
+.textCenter { text-align: center !important; }
+.textRight { text-align: right !important; }
+
+.marginBottom1 { margin-bottom: 1rem !important;}
+.marginTop1 { margin-top: 1rem !important;}
+.marginBottom0 { margin-bottom: 0 !important;}
+
+.errorBorder { border: 1px solid $subColor4; }
+
+/* functional mixin  ------------------------------------------------------------------------- */
+// 在css裡面使用到iconFont的圖，輸入參數為content裡面的代碼
+@mixin iconFont($code) {
+content: $code;
+font-family: 'themify';
+speak: none;
+font-style: normal;
+font-weight: normal;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+*:focus { outline: none; }
+
+// release version issue
+.k-grid-header .k-header>.k-link {
+padding: 8px 12px !important;
+}
+
+button:disabled{opacity: 0.5;}
+
+.commonQuestionDatepicker {
+position: absolute;
+left: -100px;
+top: -100px;
+}
+
+.custom-img-area {
+width: 40% !important;
+}
+.custom-img-area > img {
+width: 100%;
+height: auto;
+}
+
+//datepicker 縮小卷軸高度
+.k-datetime-container .k-datetime-selector { height: 17em;}
