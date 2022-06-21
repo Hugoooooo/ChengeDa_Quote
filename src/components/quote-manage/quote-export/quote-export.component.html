@@ -3,7 +3,7 @@
     <div class="item">
       <span class="itemTitle">承辦人</span>
       <div>
-        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="business" [data]="businessDDL"
+        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="form.create_user" [data]="businessDDL"
           [defaultItem]="{'text':'請選擇','value':null}" [textField]="'text'" [valueField]="'value'">
         </kendo-dropdownlist>
       </div>
@@ -12,43 +12,69 @@
     <div class="item">
       <span class="itemTitle">工程名稱</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='project'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.project_name'>
       </div>
     </div>
     <div class="item">
       <span class="itemTitle">工程地址</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='project'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.customer_address'>
       </div>
     </div>
     <div class="item">
-      <span class="itemTitle">客戶名稱</span>
+      <span class="itemTitle">業主名稱</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='name'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.customer_name'>
       </div>
     </div>
     <div class="item">
       <span class="itemTitle">聯絡人</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='contactName'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.contact_name'>
       </div>
     </div>
     <div class="item">
       <span class="itemTitle">行動電話</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='cellPhone'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.phone'>
       </div>
     </div>
     <div class="item">
       <span class="itemTitle">電話</span>
       <div>
-        <input type="text" placeholder="請輸入" [(ngModel)]='phone'>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.mobile'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">統一編號</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.companyTax'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">傳真</span>
+      <div>
+        <input type="text" placeholder="請輸入" [(ngModel)]='form.fax'>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">稅額計算方式</span>
+      <div>
+        <input class="input" type="radio" name="status_AB" id="status_A" (click)="this.form.fax_type = '1'"
+          [checked]="this.form.fax_type == '1'">
+        <label for="status_A">外加</label>
+        <input class="input" type="radio" name="status_AB" id="status_B" (click)="this.form.fax_type = '2'"
+          [checked]="this.form.fax_type == '2'">
+        <label for="status_B">內含</label>
       </div>
     </div>
   </div>
+</div>
+<div class="block">
   <div class="content half paddingBottom0">
     <div class="item itemBlock">
       <button class="lBtn Green" (click)="addQuote()">新增</button>
+      <button class="lBtn LightBlue" style="float: right;" (click)="import()">載入</button>
     </div>
 
     <div>
@@ -79,7 +105,7 @@
             <div class="item">
               <span class="itemTitle">單價</span>
               <div>
-                <input type="number" placeholder="請輸入" [(ngModel)]='quote.unitPrice' (change)="calcAmount(quote)">
+                <input type="number" placeholder="請輸入" [(ngModel)]='quote.unit_price' (change)="calcAmount(quote)">
               </div>
             </div>
             <div class="item">
@@ -104,7 +130,7 @@
 
     <div class="item itemBlock textCenter marginTop1">
       <button class="lBtn Green" style="float: left;" *ngIf="quoteList.length>2" (click)="addQuote()">新增</button>
-      <button class="lBtn Yellow">預覽</button>
+      <button class="lBtn Yellow" (click)="preview()">預覽</button>
       <button class="lBtn Gray" (click)="reset()">重置</button>
       <button class="lBtn Blue" (click)="export()">匯出</button>
     </div>

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   version: 'v1.0',
-  apiUrl: 'http://payment-uat.qiosk.com.tw',
+  apiUrl: 'http://localhost:5000',
 };
 
 /*

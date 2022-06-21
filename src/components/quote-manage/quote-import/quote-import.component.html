@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">報價單載入</h4>
+  <button class="closeBtn" aria-label="Close" (click)="cancel()"><i class="icon-close" aria-hidden="true"></i></button>
+</div>
+<div class="content modalStyle">
+  <div class="item">
+    <span class="itemTitle essential">案件編號</span>
+    <div>
+      <input type="text" style="width: 90%;" placeholder="請輸入" [(ngModel)]="caseNumber">
+    </div>
+  </div>
+</div>
+<div class="modal-footer textCenter">
+<button class="modalBtn Blue" (click)="save()">送出</button>
+<button class="modalBtn Gray" (click)="cancel()">返回</button>
+</div>

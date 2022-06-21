@@ -25,5 +25,8 @@ export const APPPATH = {
   QuoteManageFlow: {
     // 報價單匯出
     QuoteExport: 'quote-export',
+    // 報價單載入
+    QuoteImport: 'quote-import',
+
   },
 };

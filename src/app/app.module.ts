@@ -1,4 +1,4 @@
-import { QuoteExportComponent } from './../components/quote-manage/quote-export/quote-export/quote-export.component';
+import { QuoteImportComponent } from './../components/quote-manage/quote-import/quote-import.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { DashboardComponent } from './../components/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,6 +28,7 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { MaterialSharedModule } from './material-shared.module';
+import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/quote-export.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MaterialSharedModule } from './material-shared.module';
     MainComponent,
     DatetimeMessageComponent,
     GridFilterMessageComponent,
-    QuoteExportComponent
+    QuoteExportComponent,
+    QuoteImportComponent
   ],
   imports: [
     BrowserModule,
