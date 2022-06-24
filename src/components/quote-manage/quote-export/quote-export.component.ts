@@ -4,7 +4,7 @@ import { DomainProvider } from 'src/providers/domainProvider';
 import { QuoteExportReqModel, QuoteModel, QuoteViewModel } from 'src/models/form/form.model';
 import { BaseComponent } from 'src/components/base.component';
 import * as _ from 'lodash';
-import { Business, HitachiProdcuts, ProductSeries } from 'src/app/app.constant';
+import { Business } from 'src/app/app.constant';
 import { DatePipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuoteService } from 'src/services/quote.service';
@@ -32,10 +32,29 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.reset();
     this.dataItems = [];
-    this.dataItems = this.dataItems.concat(ProductSeries); // 標題
-    this.dataItems = this.dataItems.concat(HitachiProdcuts); // 日立
-    this.addQuote();
+    this.initParamList();
     // this.domainProvider.showMask();
+  }
+
+  initParamList(){
+    this.domainProvider.showMask();
+    this.quoteService.getParameters().subscribe({
+      next: (ret) => {
+        this.domainProvider.hideMask();
+        const isSuccess = !ret.isError;
+        if (isSuccess) {
+          this.dataItems = ret.datas;
+          this.addQuote();
+        }else{
+          Swal.fire({
+            confirmButtonText: '確定',
+            icon: isSuccess ? 'success' : 'error',
+            title: ret.message,
+            text: ''
+          });
+        }
+      }
+    });
   }
 
   addQuote(): void {
@@ -144,10 +163,10 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
     return this.quoteList.map(p => {
       var tmp = new QuoteModel();
       tmp.product = p.product;
-      tmp.quantity = p.quantity;
+      tmp.quantity = p.quantity ? p.quantity : 0;
       tmp.pattern = p.pattern;
-      tmp.unit_price = p.unit_price;
-      tmp.amount = p.amount;
+      tmp.unit_price = p.unit_price ? p.unit_price : 0;
+      tmp.amount = p.amount ? p.amount : 0;
       tmp.remark = p.remark;
       tmp.idx = p.idx;
       return tmp;
