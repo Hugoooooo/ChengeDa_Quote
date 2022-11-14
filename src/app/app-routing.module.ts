@@ -1,3 +1,4 @@
+import { PuchCardEditComponent } from './../components/puch-card/puch-card-edit/puch-card-edit.component';
 import { QuoteImportComponent } from './../components/quote-manage/quote-import/quote-import.component';
 import { DashboardComponent } from './../components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { LoginComponent } from 'src/components/login/login.component';
 import { MainComponent } from 'src/components/shared/main/main.component';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/quote-export.component';
+import { PuchCardRecordComponent } from 'src/components/puch-card/puch-card-record/puch-card-record.component';
 
 const routes: Routes = [
   { path: '', redirectTo: APPPATH.Login, pathMatch: 'full' },
@@ -40,6 +42,28 @@ const routes: Routes = [
             component: QuoteImportComponent,
             data: {
               breadcrumb: '載入報價單'
+            }
+          },
+        ],
+      },
+      {
+        path: APPPATH.PunchCard,
+        data: {
+          breadcrumb: '出缺勤管理'
+        },
+        children: [
+          {
+            path: APPPATH.PuchCardFlow.PuchCardRecord,
+            component: PuchCardRecordComponent,
+            data: {
+              breadcrumb: '出缺勤紀錄'
+            }
+          },
+          {
+            path: APPPATH.PuchCardFlow.PuchCardEdit,
+            component: PuchCardEditComponent,
+            data: {
+              breadcrumb: '打卡編輯'
             }
           },
         ],

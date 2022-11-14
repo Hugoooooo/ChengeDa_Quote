@@ -27,6 +27,10 @@ export const APPPATH = {
     QuoteExport: 'quote-export',
     // 報價單載入
     QuoteImport: 'quote-import',
-
   },
+  PunchCard: 'punchCard',
+  PuchCardFlow:{
+    PuchCardRecord: 'punch-card-record',
+    PuchCardEdit: 'punch-card-edit',
+  }
 };

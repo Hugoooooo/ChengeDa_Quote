@@ -30,6 +30,24 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
+    {
+      id: 3,
+      attribute: 'icon-check-box',
+      name: '出缺勤管理',
+      domain: APPPATH.PunchCard,
+      subMenuInfos: [
+        {
+          id: 4,
+          url: APPPATH.PuchCardFlow.PuchCardRecord,
+          name: '出缺勤紀錄'
+        },
+        {
+          id: 5,
+          url: APPPATH.PuchCardFlow.PuchCardEdit,
+          name: '打卡編輯'
+        }
+      ]
+    },
   ];
 
   constructor(

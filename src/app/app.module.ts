@@ -1,3 +1,5 @@
+import { PuchCardEditComponent } from './../components/puch-card/puch-card-edit/puch-card-edit.component';
+import { PuchCardRecordComponent } from './../components/puch-card/puch-card-record/puch-card-record.component';
 import { QuoteImportComponent } from './../components/quote-manage/quote-import/quote-import.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { DashboardComponent } from './../components/dashboard/dashboard.component';
@@ -42,7 +44,9 @@ import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/q
     DatetimeMessageComponent,
     GridFilterMessageComponent,
     QuoteExportComponent,
-    QuoteImportComponent
+    QuoteImportComponent,
+    PuchCardRecordComponent,
+    PuchCardEditComponent
   ],
   imports: [
     BrowserModule,
