@@ -28,7 +28,11 @@
         <input type="text" placeholder="下班時間" [(ngModel)]="item.endTime">
       </div>
     </div>
-
+    <div class="item itemBlock textCenter marginTop1">
+      <button class="lBtn Yellow" (click)="preview()">預覽</button>
+      <button class="lBtn Gray">重置</button>
+      <button class="lBtn Blue">匯出</button>
+    </div>
     <!-- <div>
       <div class="editList plural border-bottom-1d" *ngFor="let quote of quoteList; let i = index">
         <div>
