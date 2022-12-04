@@ -8,13 +8,6 @@
       </div>
     </div>
     <div class="item">
-      <span class="itemTitle">是否切換小時制</span>
-      <div>
-        <input class="input" type="checkbox" id="hourSwitch" [(ngModel)]="hourSwitch">
-        <label class="input" for="hourSwitch"></label>
-      </div>
-    </div>
-    <div class="item">
       <span class="itemTitle">年</span>
       <div>
         <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.year" [data]="yearDDL">
@@ -34,7 +27,7 @@
     </div>
   </div>
 
-  <div class="content padding0">
+  <div class="content padding5">
     <kendo-grid #grid
     [data]="view | async"
     [pageSize]="gridState.take"
@@ -50,14 +43,15 @@
     (filterChange)="filterChange($event)"
   >
       <app-grid-filter-message></app-grid-filter-message>
-      <kendo-grid-column field="memberName" title="名稱" width="200px"></kendo-grid-column>
-      <kendo-grid-column field="punchDate" title="打卡日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
-      <kendo-grid-column field="onWork" title="上班時間" width="150px"></kendo-grid-column>
-      <kendo-grid-column field="offWrok" title="下班時間" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="regularTotal" title="正常工時" width="200px"></kendo-grid-column>
-      <kendo-grid-column field="over33Total" title="加班工時(1.33)" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="over66Total" title="加班工時(1.66)" width="100px"></kendo-grid-column>
+      <ng-template kendoGridToolbarTemplate>
+          <button class="lBtn Blue" (click)="openAddModal('lg')">新增項目</button>
+      </ng-template>
+      <kendo-grid-column field="memberName" title="會員名稱" width="200px"></kendo-grid-column>
+      <kendo-grid-column field="type" title="假別" width="200px"></kendo-grid-column>
+      <kendo-grid-column field="dayoffDate" title="請假日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+      <kendo-grid-column field="startTime" title="開始時間" width="150px" [format]="'HH:mm'"></kendo-grid-column>
+      <kendo-grid-column field="endTime" title="結束時間" width="150px" [format]="'HH:mm'"></kendo-grid-column>
     </kendo-grid>
-    <div *ngIf="punchService.isLoading" class="k-i-loading"></div>
+    <div *ngIf="dayoffService.isLoading" class="k-i-loading"></div>
   </div>
 </div>

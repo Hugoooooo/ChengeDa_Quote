@@ -32,5 +32,8 @@ export const APPPATH = {
   PuchCardFlow:{
     PuchCardRecord: 'punch-card-record',
     PuchCardEdit: 'punch-card-edit',
+    CalculateSalary: 'calculate-salary',
+    DayoffList: 'dayoff-list',
+    DayoffEdit: 'dayoff-edit',
   }
 };

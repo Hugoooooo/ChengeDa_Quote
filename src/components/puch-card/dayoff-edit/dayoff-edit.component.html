@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">新增項目</h4>
+  <button class="closeBtn" aria-label="Close" (click)="cancel()"><i class="icon-close"
+          aria-hidden="true"></i></button>
+</div>
+<div class="content modalStyle">
+  <div class="item">
+    <span class="itemTitle">員工</span>
+    <div>
+      <kendo-dropdownlist [(ngModel)]="formData.memberId" [data]="memberDDL" [valuePrimitive]="true" textField="text" valueField="value">
+      </kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">假別</span>
+    <div>
+      <kendo-dropdownlist [(ngModel)]="formData.type" [data]="typeDDL" [valuePrimitive]="true" textField="text" valueField="value">
+      </kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">請假日期</span>
+    <div>
+        <kendo-datepicker
+          [format]="'yyyy-MM-dd'"
+          [placeholder]="''"
+          [(ngModel)]="this.formData.offDate">
+        <app-datetime-message></app-datetime-message></kendo-datepicker>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">是否請整天</span>
+    <div>
+      <input class="input" type="checkbox" id="isAllDay" [(ngModel)]="formData.isAllDay">
+      <label class="input" for="isAllDay"></label>
+    </div>
+  </div>
+  <ng-container *ngIf="!formData.isAllDay">
+    <div class="item">
+      <span class="itemTitle">起始時間</span>
+      <div>
+          <input type="text" [(ngModel)]="formData.startDate" placeholder="請輸入4位數起始時間">
+      </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">結束時間</span>
+    <div>
+        <input type="text" [(ngModel)]="formData.endDate" placeholder="請輸入4位數結束時間">
+    </div>
+  </div>
+  </ng-container>
+
+</div>
+<div class="modal-footer textCenter">
+  <button class="modalBtn Blue" (click)="save()">確 定</button>
+  <button class="modalBtn Gray" (click)="cancel()">取 消</button>
+</div>

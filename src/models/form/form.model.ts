@@ -29,10 +29,17 @@ export class QuoteViewModel extends QuoteModel {
 }
 
 export class CardRecordModel {
-  year: number;
-  month: number;
-  day: number;
-  startTime: string;
-  endTime: string;
-  dayOff: boolean;
+  punchDate: string;
+  onWork: string;
+  offWork: string;
+  isHoliday: boolean;
+}
+
+export class DayoffEditModel{
+  memberId :number;
+  type: string;
+  isAllDay:boolean;
+  offDate: any;
+  startDate: any;
+  endDate: any;
 }

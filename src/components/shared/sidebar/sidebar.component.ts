@@ -1,3 +1,4 @@
+import { DayoffListComponent } from './../../puch-card/dayoff-list/dayoff-list.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APPPATH } from 'src/app/app-sitemap.const';
@@ -19,7 +20,7 @@ export class SidebarComponent implements OnInit {
   public menuList = [
     {
       id: 1,
-      attribute: 'icon-check-box',
+      attribute: 'icon-target',
       name: '報價管理',
       domain: APPPATH.QuoteManage,
       subMenuInfos: [
@@ -37,6 +38,11 @@ export class SidebarComponent implements OnInit {
       domain: APPPATH.PunchCard,
       subMenuInfos: [
         {
+          id: 6,
+          url: APPPATH.PuchCardFlow.CalculateSalary,
+          name: '月薪計算'
+        },
+        {
           id: 4,
           url: APPPATH.PuchCardFlow.PuchCardRecord,
           name: '出缺勤紀錄'
@@ -45,6 +51,11 @@ export class SidebarComponent implements OnInit {
           id: 5,
           url: APPPATH.PuchCardFlow.PuchCardEdit,
           name: '打卡編輯'
+        },
+        {
+          id: 7,
+          url: APPPATH.PuchCardFlow.DayoffList,
+          name: '請假列表'
         }
       ]
     },

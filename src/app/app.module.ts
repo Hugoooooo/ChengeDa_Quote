@@ -1,3 +1,6 @@
+import { DayoffEditComponent } from './../components/puch-card/dayoff-edit/dayoff-edit.component';
+import { DayoffListComponent } from './../components/puch-card/dayoff-list/dayoff-list.component';
+import { CalculateSalaryComponent } from './../components/puch-card/calculate-salary/calculate-salary.component';
 import { PuchCardEditComponent } from './../components/puch-card/puch-card-edit/puch-card-edit.component';
 import { PuchCardRecordComponent } from './../components/puch-card/puch-card-record/puch-card-record.component';
 import { QuoteImportComponent } from './../components/quote-manage/quote-import/quote-import.component';
@@ -46,7 +49,10 @@ import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/q
     QuoteExportComponent,
     QuoteImportComponent,
     PuchCardRecordComponent,
-    PuchCardEditComponent
+    PuchCardEditComponent,
+    CalculateSalaryComponent,
+    DayoffListComponent,
+    DayoffEditComponent
   ],
   imports: [
     BrowserModule,

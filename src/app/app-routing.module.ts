@@ -1,3 +1,6 @@
+import { DayoffEditComponent } from './../components/puch-card/dayoff-edit/dayoff-edit.component';
+import { DayoffListComponent } from './../components/puch-card/dayoff-list/dayoff-list.component';
+import { CalculateSalaryComponent } from './../components/puch-card/calculate-salary/calculate-salary.component';
 import { PuchCardEditComponent } from './../components/puch-card/puch-card-edit/puch-card-edit.component';
 import { QuoteImportComponent } from './../components/quote-manage/quote-import/quote-import.component';
 import { DashboardComponent } from './../components/dashboard/dashboard.component';
@@ -63,7 +66,28 @@ const routes: Routes = [
             path: APPPATH.PuchCardFlow.PuchCardEdit,
             component: PuchCardEditComponent,
             data: {
-              breadcrumb: '打卡編輯'
+              breadcrumb: '新增打卡'
+            }
+          },
+          {
+            path: APPPATH.PuchCardFlow.CalculateSalary,
+            component: CalculateSalaryComponent,
+            data: {
+              breadcrumb: '月薪計算'
+            }
+          },
+          {
+            path: APPPATH.PuchCardFlow.DayoffList,
+            component: DayoffListComponent,
+            data: {
+              breadcrumb: '請假列表'
+            }
+          },
+          {
+            path: APPPATH.PuchCardFlow.DayoffEdit,
+            component: DayoffEditComponent,
+            data: {
+              breadcrumb: '請假編輯'
             }
           },
         ],

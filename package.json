@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --baseHref=/ChengeDa_Web/",
-    "build": "ng build --prod --baseHref=/ChengeDa_Web/",
+    "start": "ng serve --baseHref=/ChengeDaQuote/",
+    "build": "ng build --prod --baseHref=/ChengeDaQuote/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
