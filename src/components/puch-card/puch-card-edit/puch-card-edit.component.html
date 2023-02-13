@@ -29,9 +29,16 @@
 </div>
 <div class="block" *ngIf="dataList.length>0">
   <div class="content half paddingBottom0">
-    <div class="item itemBlock" *ngFor="let item of dataList">
-      <span class="itemTitle" [ngClass]="{'Red': item.isHoliday }">{{item.punchDate}}</span>
+    <div class="item itemBlock" *ngFor="let item of dataList; let i = index">
+      <span class="itemTitle" [ngClass]="{'Yellow': item.isHoliday }">{{item.punchDate}}</span>
       <div>
+        <div class="item" *ngIf="item.isHoliday">
+          <span class="itemTitle" style="width: 6rem;">是否補班日</span>
+          <div>
+            <input class="input" type="checkbox" [id]="'isFillDay_'+i" [(ngModel)]="item.isFillDay">
+            <label class="input" [for]="'isFillDay_'+i"></label>
+          </div>
+        </div>
         <input type="text" placeholder="上班時間" [(ngModel)]="item.onWork">
         <input type="text" placeholder="下班時間" [(ngModel)]="item.offWork">
       </div>

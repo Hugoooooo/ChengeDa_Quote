@@ -3,7 +3,8 @@
     <div class="item">
       <span class="itemTitle">員工</span>
       <div>
-        <kendo-dropdownlist [(ngModel)]="formData.memberId" [data]="memberDDL" [valuePrimitive]="true" textField="text" valueField="value">
+        <kendo-dropdownlist [(ngModel)]="formData.memberId" [data]="memberDDL" [valuePrimitive]="true" textField="text"
+          valueField="value">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -43,12 +44,21 @@
     <h4> 加班費 : {{pageData.overtimeSalary}}</h4>
     <h4> 當月薪月 : {{pageData.monthSalary}}</h4>
     <br>
-    <h4> 正常工時 : {{pageData.regularTotal}} 分鐘   {{ pageData.regularTotalHR}} 小時</h4>
+    <h4> 正常工時 : {{ pageData.regularTotalHR}} 小時</h4>
+    <h4> 特休假時數 : {{ pageData.annualDayoffMinsHR}} 小時</h4>
+    <h4> 病假時數 : {{ pageData.sickDayoffMinsHR}} 小時</h4>
+    <h4> 事假時數 : {{ pageData.personalDayoffMinsHR}} 小時</h4>
+    <h4> 加班時數 : {{ pageData.overtimeMinsHR}} 小時</h4>
+    <br>
+    <h4> 已使用特休 : {{pageData.usedAnnualHR}} 小時</h4>
+    <h4> 剩餘特休 : {{pageData.annualHoursHR - pageData.usedAnnualHR}} 小時</h4>
+    <h4> 總特休時數 : {{ pageData.annualHoursHR}} 小時</h4>
+    <!-- <h4> 正常工時 : {{pageData.regularTotal}} 分鐘   {{ pageData.regularTotalHR}} 小時</h4>
     <h4> 特休假時數 : {{pageData.annualDayoffMins}} 分鐘   {{ pageData.annualDayoffMinsHR}} 小時</h4>
     <h4> 病假時數 : {{pageData.sickDayoffMins}} 分鐘   {{ pageData.sickDayoffMinsHR}} 小時</h4>
     <h4> 事假時數 : {{pageData.personalDayoffMins}} 分鐘   {{ pageData.personalDayoffMinsHR}} 小時</h4>
     <h4> 總特休時數 : {{pageData.annualHours}} 分鐘   {{ pageData.annualHoursHR}} 小時</h4>
-    <h4> 加班時數 : {{pageData.overtimeMins}} 分鐘   {{ pageData.overtimeMinsHR}} 小時</h4>
+    <h4> 加班時數 : {{pageData.overtimeMins}} 分鐘   {{ pageData.overtimeMinsHR}} 小時</h4> -->
     <!-- <h4> 剩餘特休 : {{pageData.usedAnnualMins}}</h4> -->
 
 

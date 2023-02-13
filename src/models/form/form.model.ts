@@ -33,6 +33,7 @@ export class CardRecordModel {
   onWork: string;
   offWork: string;
   isHoliday: boolean;
+  isFillDay: boolean;
 }
 
 export class DayoffEditModel{

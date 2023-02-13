@@ -25,8 +25,8 @@ export class PuchCardRecordComponent implements OnInit {
   public _PAGESIZE = PageSize;
   public gridState: State = {
     sort: [{
-      field: 'createTime',
-      dir: 'desc'
+      field: 'punchDate',
+      dir: 'asc'
     }],
     skip: 0,
     take: 10

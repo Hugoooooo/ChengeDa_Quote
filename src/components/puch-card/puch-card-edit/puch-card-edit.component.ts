@@ -54,6 +54,7 @@ export class PuchCardEditComponent implements OnInit {
       addItem.onWork = '';
       addItem.offWork = '';
       addItem.isHoliday = this.checkWeekend(new Date(addItem.punchDate).getDay());
+      addItem.isFillDay = false;
       this.dataList.push(addItem);
     }
   }
@@ -72,7 +73,8 @@ export class PuchCardEditComponent implements OnInit {
           punchDate: p.punchDate,
           onWork: p.onWork,
           offWork: p.offWork,
-          isHoliday: p.isHoliday
+          isHoliday: p.isHoliday,
+          isFillDay: p.isFillDay,
         }))
       };
       this.punchService.insertPunchDetail(reqbody).subscribe(ret=>{

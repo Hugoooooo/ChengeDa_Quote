@@ -26,8 +26,8 @@ export class DayoffListComponent implements OnInit {
   public _PAGESIZE = PageSize;
   public gridState: State = {
     sort: [{
-      field: 'createTime',
-      dir: 'desc'
+      field: 'dayoffDate',
+      dir: 'asc'
     }],
     skip: 0,
     take: 10

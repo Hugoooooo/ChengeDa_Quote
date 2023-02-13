@@ -49,7 +49,7 @@ export class CalculateSalaryComponent implements OnInit {
       this.pageData.personalDayoffMinsHR = Math.round((this.pageData.personalDayoffMins / 60) * 10) / 10
       this.pageData.annualHoursHR = Math.round((this.pageData.annualHours / 60) * 10) / 10
       this.pageData.overtimeMinsHR = Math.round((this.pageData.overtimeMins / 60) * 10) / 10
-
+      this.pageData.usedAnnualHR =  Math.round((this.pageData.usedAnnualMins / 60) * 10) / 10
       console.log(ret);
     })
   }
