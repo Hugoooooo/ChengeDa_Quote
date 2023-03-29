@@ -121,6 +121,7 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
               addItem.remark = item.remark;
               addItem.unit_price = item.unit_price;
               addItem.idx = item.idx;
+              addItem.unit = item.unit;
               addItem.productList = _.cloneDeep(this.dataItems);
               this.quoteList.push(addItem);
             });
@@ -162,6 +163,7 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
   mappingDetails() {
     return this.quoteList.map(p => {
       var tmp = new QuoteModel();
+      tmp.unit = p.unit;
       tmp.product = p.product;
       tmp.quantity = p.quantity ? p.quantity : 0;
       tmp.pattern = p.pattern;

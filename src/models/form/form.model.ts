@@ -6,6 +6,7 @@ export class QuoteModel {
   amount: number;
   remark: string;
   idx: number;
+  unit: string;
 }
 
 // 標籤進行編輯 拿到此標籤資訊顯示在編輯畫面

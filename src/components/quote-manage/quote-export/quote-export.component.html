@@ -106,6 +106,12 @@
               </div>
             </div>
             <div class="item">
+              <span class="itemTitle">數量單位</span>
+              <div>
+                <input type="text" placeholder="請輸入" [(ngModel)]='quote.unit'>
+              </div>
+            </div>
+            <div class="item">
               <span class="itemTitle">單價</span>
               <div>
                 <input type="number" placeholder="請輸入" [(ngModel)]='quote.unit_price' (change)="calcAmount(quote)">
