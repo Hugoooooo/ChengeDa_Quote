@@ -79,6 +79,8 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
 
   reset() {
     this.form = new QuoteExportReqModel();
+    this.form.row = 25;
+    this.form.row_size = 12;
     this.form.fax_type = '1'; // 1: 內含 2: 外加
     this.quoteList = [];
   }

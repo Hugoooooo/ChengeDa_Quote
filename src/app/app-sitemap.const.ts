@@ -35,5 +35,12 @@ export const APPPATH = {
     CalculateSalary: 'calculate-salary',
     DayoffList: 'dayoff-list',
     DayoffEdit: 'dayoff-edit',
+  },
+  Inventory: 'inventory',
+  InventoryFlow:{
+    InventoryList:'inventory-list',
+    PurchaseList:'purchase-list',
+    ShipList:'ship-list'
   }
+
 };

@@ -59,6 +59,29 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
+    {
+      id: 4,
+      attribute: 'icon-check-box',
+      name: '進銷存管理',
+      domain: APPPATH.Inventory,
+      subMenuInfos: [
+        {
+          id: 6,
+          url: APPPATH.InventoryFlow.InventoryList,
+          name: '庫存列表'
+        },
+        {
+          id: 7,
+          url: APPPATH.InventoryFlow.PurchaseList,
+          name: '進貨單列表'
+        },
+        {
+          id: 8,
+          url: APPPATH.InventoryFlow.ShipList,
+          name: '出貨單列表'
+        }
+      ]
+    },
   ];
 
   constructor(
@@ -89,7 +112,11 @@ export class SidebarComponent implements OnInit {
 
   // 點擊sidebar 選項
   openMenu(menuId: any): void {
-    this.menuId = menuId;
+    if (menuId == this.menuId) {
+      this.menuId = -1;
+    } else {
+      this.menuId = menuId;
+    }
   }
 
   // 前往頁面

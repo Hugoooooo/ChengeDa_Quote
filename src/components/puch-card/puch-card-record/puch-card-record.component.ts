@@ -19,7 +19,7 @@ export class PuchCardRecordComponent implements OnInit {
   public yearDDL = [];
   public monthDDL = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   public memberDDL: any;
-  public formData: GetPunchListFormModel;
+  public formData: GetPunchListFormModel = new GetPunchListFormModel();
   public filter: CompositeFilterDescriptor;
   public view: Observable<GridDataResult>;
   public _PAGESIZE = PageSize;
@@ -39,23 +39,25 @@ export class PuchCardRecordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pagePrepare();
     this.punchService.getMemberDDL().subscribe(p => {
       this.memberDDL = p;
+      console.log(p);
+      this.pagePrepare();
+      this.view = this.recordService.pipe(map(data => process(data, this.gridState)));
+      this.recordService.reset();
+      this.recordService.read();
     });
-    this.view = this.recordService.pipe(map(data => process(data, this.gridState)));
-    this.recordService.reset();
-    this.recordService.read();
   }
 
   pagePrepare() {
     this.formData = new GetPunchListFormModel();
     this.formData.year = new Date().getFullYear();
-    this.formData.month = new Date().getMonth()+1;
+    this.formData.month = new Date().getMonth() + 1;
     for (var i = 1; i <= 30; i++) {
       let year = new Date().getFullYear() - 2;
       this.yearDDL.push(year + i);
     }
+    this.formData.memberId = this.memberDDL[0].value;
   }
 
   onStateChange(state: State) {
@@ -67,14 +69,14 @@ export class PuchCardRecordComponent implements OnInit {
     this.filter = filter;
   }
 
-  search(){
+  search() {
     this.recordService.hourSwitch = this.hourSwitch;
     this.gridState.skip = 0;
     this.recordService.reset();
     this.recordService.search(this.formData);
   }
 
-  reset(){
+  reset() {
 
   }
 

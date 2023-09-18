@@ -1578,7 +1578,7 @@ ckeditor {
         .modalStyle { padding: 0 1.5rem !important;  }
     }
 }
-.modal-lg, .modal-xl {
+.modal-lg, .modal-xl ,.modal-xxl {
     .modal-content {
         .modalStyle {
             height: 70vh;
@@ -1591,6 +1591,7 @@ ckeditor {
 .modal-sm { max-width: 400px !important; }
 .modal-lg { max-width: 540px !important; }
 .modal-xl { max-width: 1000px !important; }
+.modal-xxl { max-width: 1200px !important; }
 .modal-dialog {
     position: relative;
     top: 50%;
@@ -1672,6 +1673,9 @@ ckeditor {
             margin: 0 1rem 1rem auto;
         }
     }
+}
+@media(max-width: 1200px) {
+  .modal-xxl { width: 94% !important; }
 }
 @media(max-width: 1000px) {
     .modal-xl { width: 94% !important; }

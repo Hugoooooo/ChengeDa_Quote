@@ -1,15 +1,22 @@
 @mixin font-size-map($font-size-map) {
   @each $breakpoint, $font-size in $font-size-map {
-      @if $breakpoint == null {
-          font-size: $font-size;
-      } @else {
-        @media (max-width: $breakpoint) {
-            font-size: $font-size;
-        }
+    @if $breakpoint ==null {
+      font-size: $font-size;
+    }
+
+    @else {
+      @media (max-width: $breakpoint) {
+        font-size: $font-size;
       }
+    }
   }
 }
-$html-font-size: (null:16px, 768px:14px, 460px:12px);
+
+$html-font-size: (
+  null:16px,
+  768px:14px,
+  460px:12px
+);
 
 $mainColor1: #04368F;
 $mainColor2: #005CAF;
@@ -34,77 +41,196 @@ $common_Black: #000000;
 $common_Red: #FF0000;
 $common_Blue: #1155CC;
 
+
 $imgUrl: 'src/assets/imgs/';
 
 /* fontsize commmon  ------------------------------------------------------------------------- */
 //字體設定，以1rem為單位，做2px字級的調整
-.fontsize-2 { font-size: 0.875rem; }
-.fontsize0 { font-size: 1rem; }
-.fontsize2 { font-size: 1.125rem; }
-.fontsize4 { font-size: 1.250rem; }
-.fontsize6 { font-size: 1.375rem; }
-.fontsize8 { font-size: 1.500rem; }
-.fontsize10 { font-size: 1.625rem; }
-.fontsize12 { font-size: 1.750rem; }
-.fontsize14 { font-size: 1.875rem; }
-.fontsize26 { font-size: 2.625rem; }
+.fontsize-2 {
+  font-size: 0.875rem;
+}
 
-.Blue { background: $mainColor2 !important; }
-.LightBlue { background: $mainColor3 !important; }
-.Red { background: $subColor4 !important; }
-.Green { background: $subColor6 !important; }
-.Yellow { background: $subColor5 !important; }
-.Gray { background: $subColor3 !important; }
-.btnIbonGreen { background: $subColor10 !important; }
-.btnIbonGray { background: $subColor9 !important; }
+.fontsize0 {
+  font-size: 1rem;
+}
 
-.textLeft { text-align: left !important; }
-.textCenter { text-align: center !important; }
-.textRight { text-align: right !important; }
+.fontsize2 {
+  font-size: 1.125rem;
+}
 
-.marginBottom1 { margin-bottom: 1rem !important;}
-.marginTop1 { margin-top: 1rem !important;}
-.marginBottom0 { margin-bottom: 0 !important;}
+.fontsize4 {
+  font-size: 1.250rem;
+}
 
-.errorBorder { border: 1px solid $subColor4; }
+.fontsize6 {
+  font-size: 1.375rem;
+}
+
+.fontsize8 {
+  font-size: 1.500rem;
+}
+
+.fontsize10 {
+  font-size: 1.625rem;
+}
+
+.fontsize12 {
+  font-size: 1.750rem;
+}
+
+.fontsize14 {
+  font-size: 1.875rem;
+}
+
+.fontsize26 {
+  font-size: 2.625rem;
+}
+
+.Blue {
+  background: $mainColor2 !important;
+}
+
+.LightBlue {
+  background: $mainColor3 !important;
+}
+
+.Red {
+  background: $subColor4 !important;
+}
+
+.Green {
+  background: $subColor6 !important;
+}
+
+.Yellow {
+  background: $subColor5 !important;
+}
+
+.Gray {
+  background: $subColor3 !important;
+}
+
+.btnIbonGreen {
+  background: $subColor10 !important;
+}
+
+.btnIbonGray {
+  background: $subColor9 !important;
+}
+
+.textLeft {
+  text-align: left !important;
+}
+
+.textCenter {
+  text-align: center !important;
+}
+
+.textRight {
+  text-align: right !important;
+}
+
+.marginBottom1 {
+  margin-bottom: 1rem !important;
+}
+
+.marginTop1 {
+  margin-top: 1rem !important;
+}
+
+.marginBottom0 {
+  margin-bottom: 0 !important;
+}
+
+.errorBorder {
+  border: 1px solid $subColor4;
+}
 
 /* functional mixin  ------------------------------------------------------------------------- */
 // 在css裡面使用到iconFont的圖，輸入參數為content裡面的代碼
 @mixin iconFont($code) {
-content: $code;
-font-family: 'themify';
-speak: none;
-font-style: normal;
-font-weight: normal;
-font-variant: normal;
-text-transform: none;
-line-height: 1;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+  content: $code;
+  font-family: 'themify';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-*:focus { outline: none; }
+*:focus {
+  outline: none;
+}
 
 // release version issue
 .k-grid-header .k-header>.k-link {
-padding: 8px 12px !important;
+  padding: 8px 12px !important;
 }
 
-button:disabled{opacity: 0.5;}
+button:disabled {
+  opacity: 0.5;
+}
 
 .commonQuestionDatepicker {
-position: absolute;
-left: -100px;
-top: -100px;
+  position: absolute;
+  left: -100px;
+  top: -100px;
 }
 
 .custom-img-area {
-width: 40% !important;
+  width: 40% !important;
 }
-.custom-img-area > img {
-width: 100%;
-height: auto;
+
+.custom-img-area>img {
+  width: 100%;
+  height: auto;
 }
 
 //datepicker 縮小卷軸高度
-.k-datetime-container .k-datetime-selector { height: 17em;}
+.k-datetime-container .k-datetime-selector {
+  height: 17em;
+}
+
+.k-grid-save-command {
+  background: $subColor5 !important;
+  color: #fff;
+}
+
+.k-grid-remove-command {
+  background: $subColor4 !important;
+  color: #fff;
+}
+
+.k-grid-cancel-command {
+  background: $common_Gray !important;
+  color: #fff;
+}
+
+.k-grid-edit-command {
+  background: $subColor10 !important;
+  color: #fff;
+}
+
+.nb-tag {
+  background-color: #ff3d71;
+  border-color: #ff3d71;
+  color: #ffffff;
+  // border-color: #ffaa00;
+  // color: #ffaa00;
+  // background-color: rgb(255 61 113 / 8%);
+  line-height: 1.5rem;
+  padding: 0.1875rem 0.9375rem;
+  font-weight: 400 !important;
+  margin: 4px;
+  border-style: solid;
+  border-width: 0.0625rem;
+  border-radius: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: Open Sans, sans-serif;
+  text-transform: capitalize;
+  cursor: default;
+}

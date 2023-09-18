@@ -1,11 +1,22 @@
 <div class="loginSetting">
-  <form>
-    <h1>客戶數據管理後台</h1>
+  <form [formGroup]="form">
+    <h1>政達管理後台</h1>
     <div class="content">
+        <div class="item form-group">
+          <span class="itemTitle">帳號</span>
+          <div>
+            <input type="text" placeholder="請輸入帳號" formControlName="account" name="account">
+          </div>
+        </div>
+        <div class="item form-group">
+          <span class="itemTitle">密碼</span>
+          <div>
+            <input type="password" placeholder="請輸入密碼" formControlName="password" name="password">
+          </div>
+        </div>
       <div class="item">
-        <button class="lBtn Blue" (click)="login()">登 入</button>
+        <button class="lBtn Blue" (click)="onLogIn()">登 入</button>
       </div>
     </div>
   </form>
 </div>
-<ngx-spinner></ngx-spinner>

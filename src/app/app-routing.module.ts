@@ -12,6 +12,9 @@ import { MainComponent } from 'src/components/shared/main/main.component';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/quote-export.component';
 import { PuchCardRecordComponent } from 'src/components/puch-card/puch-card-record/puch-card-record.component';
+import { PurchaseListComponent } from 'src/components/inventory/purchase-list/purchase-list.component';
+import { ShipListComponent } from 'src/components/inventory/ship-list/ship-list.component';
+import { InventoryListComponent } from 'src/components/inventory/inventory-list/inventory-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: APPPATH.Login, pathMatch: 'full' },
@@ -88,6 +91,35 @@ const routes: Routes = [
             component: DayoffEditComponent,
             data: {
               breadcrumb: '請假編輯'
+            }
+          },
+        ],
+      },
+      {
+        path: APPPATH.Inventory,
+        data: {
+          breadcrumb: '進銷存管理'
+        },
+        children: [
+          {
+            path: APPPATH.InventoryFlow.InventoryList,
+            component: InventoryListComponent,
+            data: {
+              breadcrumb: '庫存列表'
+            }
+          },
+          {
+            path: APPPATH.InventoryFlow.PurchaseList,
+            component: PurchaseListComponent,
+            data: {
+              breadcrumb: '進貨單列表'
+            }
+          },
+          {
+            path: APPPATH.InventoryFlow.ShipList,
+            component: ShipListComponent,
+            data: {
+              breadcrumb: '出貨單列表'
             }
           },
         ],

@@ -1,10 +1,10 @@
 <div class="sidebar-area">
   <ul class="main">
     <!-- 主項目點選中樣式：mainActive -->
-    <li [class]="menuId == menu.id ? 'mainActive' :'' " *ngFor="let menu of menuList" (click)="openMenu(menu.id);$event.stopPropagation()">
+    <li [class]="menuId == menu.id ? 'mainActive' :'' " *ngFor="let menu of menuList" (click)="openMenu(menu.id);">
       <i [class]="menu.attribute"></i>{{menu.name}}
       <ul class="sub" *ngFor="let sub of menu.subMenuInfos">
-        <li [class]="subMenuId == sub.id ? 'subActive' :'' " (click)="go(menu.id,sub.id,menu.domain, sub.url)">{{sub.name}}</li>
+        <li [class]="subMenuId == sub.id ? 'subActive' :'' " (click)="go(menu.id,sub.id,menu.domain, sub.url);$event.stopPropagation()">{{sub.name}}</li>
       </ul>
     </li>
   </ul>

@@ -1,3 +1,5 @@
+import { ShipListComponent } from './../components/inventory/ship-list/ship-list.component';
+import { PurchaseListComponent } from './../components/inventory/purchase-list/purchase-list.component';
 import { DayoffEditComponent } from './../components/puch-card/dayoff-edit/dayoff-edit.component';
 import { DayoffListComponent } from './../components/puch-card/dayoff-list/dayoff-list.component';
 import { CalculateSalaryComponent } from './../components/puch-card/calculate-salary/calculate-salary.component';
@@ -25,7 +27,7 @@ import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { MultiSelectModule, DropDownListModule, DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -34,6 +36,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { MaterialSharedModule } from './material-shared.module';
 import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/quote-export.component';
+import { JwtInterceptor } from 'src/helpers/jwtInterceptor';
+import { PurchaseAddComponent } from 'src/components/inventory/purchase-add/purchase-add.component';
+import { ShipAddComponent } from 'src/components/inventory/ship-add/ship-add.component';
+import { InventoryPickComponent } from 'src/components/inventory/inventory-pick/inventory-pick.component';
+import { InventoryListComponent } from 'src/components/inventory/inventory-list/inventory-list.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +59,13 @@ import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/q
     PuchCardEditComponent,
     CalculateSalaryComponent,
     DayoffListComponent,
-    DayoffEditComponent
+    DayoffEditComponent,
+    PurchaseListComponent,
+    PurchaseAddComponent,
+    ShipAddComponent,
+    ShipListComponent,
+    InventoryPickComponent,
+    InventoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +93,7 @@ import { QuoteExportComponent } from 'src/components/quote-manage/quote-export/q
     DropDownsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     DatePipe,
     DomainProvider,
   ],

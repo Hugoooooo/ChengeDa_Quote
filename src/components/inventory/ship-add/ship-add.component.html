@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">編輯出貨單</h4>
+  <button class="closeBtn" aria-label="Close" (click)="cancel()"><i class="icon-close" aria-hidden="true"></i></button>
+</div>
+<div class="content modalStyle">
+  <div class="item" *ngIf="order">
+    <span class="itemTitle essential">出貨單單號</span>
+    <div>
+      <input type="text" id="id" [(ngModel)]="order.id" name="id" placeholder="請輸入" [disabled]="editMode === 'Edit'">
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">出貨單類型</span>
+    <div>
+      <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.type" [data]="shipTypeDDL"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">客戶</span>
+    <div>
+      <input type="text" id="customer" [(ngModel)]="formData.customer" name="customer" placeholder="請輸入">
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">稅率計算</span>
+    <div>
+      <div>
+        <input class="input" type="radio" name="taxType" id="taxType-i" [value]="'內含'" [(ngModel)]="formData.taxType">
+        <label for="taxType-i">內含</label>
+        <input class="input" type="radio" name="taxType" id="taxType-o" [value]="'外加'" [(ngModel)]="formData.taxType">
+        <label for="taxType-o">外加</label>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">出貨金額</span>
+    <div>
+      <input type="number" id="amount" [(ngModel)]="formData.amount" name="amount" placeholder="請輸入">
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">發票號碼</span>
+    <div>
+      <input type="text" id="invoice" [(ngModel)]="formData.invoice" name="invoice" placeholder="請輸入">
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">出貨日期</span>
+    <div>
+      <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="shipDate"
+        (valueChange)="pruchaseDataChange($event)" [disabled]="editMode === 'Edit'">
+        <app-datetime-message></app-datetime-message>
+      </kendo-datepicker>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">備註</span>
+    <div>
+      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入" [disabled]="editMode === 'Edit'"></textarea>
+    </div>
+  </div>
+  <div class="item">
+    <div>
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="5"
+        [pageable]="true" [sortable]="true" [navigable]="true">
+        <ng-template kendoGridToolbarTemplate>
+          <button class="modalBtn Blue" (click)="openModal()">編輯項目</button>
+        </ng-template>
+        <kendo-grid-column field="pattern" title="型號"></kendo-grid-column>
+        <kendo-grid-column field="machineId" title="機號"></kendo-grid-column>
+        <kendo-grid-column field="price" editor="numeric" title="價錢"></kendo-grid-column>
+        <kendo-grid-column field="brand" editor="品牌" title="價錢"></kendo-grid-column>
+
+      </kendo-grid>
+    </div>
+  </div>
+  <div class="modal-footer textCenter">
+    <button class="modalBtn Blue" *ngIf="this.editMode=='Edit'" (click)="update()">修改</button>
+    <button class="modalBtn Blue"  *ngIf="this.editMode=='Add'" (click)="save()">新增</button>
+    <button class="modalBtn Gray" (click)="cancel()">關閉</button>
+  </div>
+</div>

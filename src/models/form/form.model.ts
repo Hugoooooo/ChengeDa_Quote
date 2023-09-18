@@ -1,3 +1,8 @@
+export class Parameter {
+  type: string;
+  values: string[];
+}
+
 export class QuoteModel {
   product: string;
   quantity: number;
@@ -22,6 +27,8 @@ export class QuoteExportReqModel {
   create_user: string;
   items: Array<QuoteModel>; // 條件 提供標籤編輯使用
   fax_type: string;
+  row: number;
+  row_size: number;
 }
 
 // 條件標籤 新增 || 編輯 變換標籤屬性時須提供對應的欄位條件 結果
@@ -37,11 +44,52 @@ export class CardRecordModel {
   isFillDay: boolean;
 }
 
-export class DayoffEditModel{
-  memberId :number;
+export class DayoffEditModel {
+  memberId: number;
   type: string;
-  isAllDay:boolean;
+  isAllDay: boolean;
   offDate: any;
   startDate: any;
   endDate: any;
+}
+
+export class AddPurchaseOrderModel {
+  orderId: string;
+  type:string;
+  note: string;
+  purchaseDate: string;
+  items: AddPurchaseDetail[] = []
+}
+
+export class AddShipOrderModel {
+  orderId: string;
+  type:string;
+  customer: string;
+  amount: number;
+  taxType: string;
+  invoice: string;
+  note: string;
+  shipDate: string;
+  items: AddPurchaseDetail[] = [];
+  inventoryIds: string[] = [];
+}
+
+export class AddPurchaseDetail {
+  id: any;
+  inventoryId: any;
+  pattern: string;
+  machineId: string;
+  brand: string;
+  price: number;
+  constructor(brand: string = "") {
+    this.brand = brand;
+  }
+}
+
+export class InventroyPickModel {
+  inventoryId: any;
+  machineId: any;
+  isPick: any;
+  pattern: string;
+  brand: string;
 }

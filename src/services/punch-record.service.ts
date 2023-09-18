@@ -43,16 +43,19 @@ export class PunchRecordService extends BehaviorSubject<any[]> {
   }
 
   read() {
-    if (this.data.length) {
-      return super.next(this.data);
+    if(this.fomrdata){
+      if (this.data.length) {
+        return super.next(this.data);
+      }
+      this.fetch()
+        .subscribe(data => {
+          this.isLoading = false;
+          this.data = data;
+          this.originalData = cloneData(data);
+          super.next(data);
+        });
     }
-    this.fetch()
-      .subscribe(data => {
-        this.isLoading = false;
-        this.data = data;
-        this.originalData = cloneData(data);
-        super.next(data);
-      });
+
   }
 
   reset() {

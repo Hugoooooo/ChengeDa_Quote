@@ -25,6 +25,10 @@ export const SwalDeleteOption: SweetAlertOptions = {
   confirmButtonText: '確定',
   cancelButtonText: '取消'
 }
+export const PuchaseTypeDDL = ['進貨','他地代送','自載'];
+export const ShipTypeDDL = ['出貨','他地代收','他人自載'];
+export const InventoryStatusDDL = ['','庫存','已出貨','已退貨'];
+
 export const Business = [
   {
     text: '劉居政',
@@ -36,3 +40,8 @@ export const Business = [
   }
 ];
 
+export enum InventoryStatus {
+  STOCK = '庫存',
+  SHIPPED = '已出貨',
+  RETURN = '已退貨',
+}

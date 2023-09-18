@@ -38,6 +38,11 @@ export class DomainProvider {
     });
   }
 
+  getUserInfo(){
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    return userInfo;
+  }
+
 
   removeStorage(token: string) {
     token = TokenPrefix + token;

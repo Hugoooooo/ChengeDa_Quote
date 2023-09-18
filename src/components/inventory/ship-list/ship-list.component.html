@@ -1,0 +1,75 @@
+<div class="block">
+  <div class="content half paddingTop0">
+    <div class="item">
+      <span class="itemTitle">進貨單單號</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.orderId" placeholder="請輸入">
+      </div>
+    </div>
+    <div class="item"></div>
+    <!-- 日期起 -->
+    <div class="item">
+      <span class="itemTitle essential">進貨日期(起)</span>
+      <div>
+        <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="startDate"
+          (valueChange)="startTimeChange($event)">
+          <app-datetime-message></app-datetime-message>
+        </kendo-datepicker>
+      </div>
+    </div>
+    <!-- 日期迄 -->
+    <div class="item">
+      <span class="itemTitle essential">進貨日期(迄)</span>
+      <div>
+        <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="endDate"
+          (valueChange)="endTimeChange($event)">
+          <app-datetime-message></app-datetime-message>
+        </kendo-datepicker>
+      </div>
+    </div>
+    <div class="item itemBlock textCenter">
+      <button class="lBtn Blue" (click)="search()">查 詢</button>
+      <button class="lBtn Gray" (click)="reset()">清 除</button>
+    </div>
+  </div>
+
+  <div class="content padding5">
+    <kendo-grid #grid
+    [data]="view | async"
+    [pageSize]="gridState.take"
+    [skip]="gridState.skip"
+    [sort]="gridState.sort"
+    [pageable]="_PAGESIZE"
+    [sortable]="true"
+    [resizable]="true"
+    (dataStateChange)="onStateChange($event)"
+    [navigable]="true"
+    [filter]="filter"
+    [filterable]="'menu'"
+    (filterChange)="filterChange($event)"
+  >
+      <app-grid-filter-message></app-grid-filter-message>
+      <ng-template kendoGridToolbarTemplate>
+          <button class="lBtn Blue" (click)="openModal()">新增項目</button>
+      </ng-template>
+      <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="custom-control custom-switch">
+            <button class="sBtn Blue" (click)="openModal(dataItem)">編 輯</button>
+            <button class="sBtn Red" (click)="remove(dataItem)">刪 除</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="id" title="出貨單單號" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="customer" title="客戶名稱" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="amount" title="出貨金額" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="tax_type" title="稅率方式" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="invoice" title="發票號碼" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="shipDate" title="出貨日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+      <kendo-grid-column field="createMember" title="建單人員" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="note" title="備註" width="250px" [format]="'HH:mm'"></kendo-grid-column>
+    </kendo-grid>
+    <div *ngIf="service.isLoading" class="k-i-loading"></div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

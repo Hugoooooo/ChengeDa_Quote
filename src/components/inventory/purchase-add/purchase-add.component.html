@@ -1,0 +1,83 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">編輯進貨單</h4>
+  <button class="closeBtn" aria-label="Close" (click)="cancel()"><i class="icon-close" aria-hidden="true"></i></button>
+</div>
+<div class="content modalStyle">
+  <div class="item" *ngIf="order">
+    <span class="itemTitle essential">進貨單單號</span>
+    <div>
+      <input type="text" id="id" [(ngModel)]="order.id" name="id" placeholder="請輸入" [disabled]="editMode === 'Edit'">
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">進貨單類型</span>
+    <div>
+      <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.type" [data]="purchaseTypeDDL"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle essential">進貨日期</span>
+    <div>
+      <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="purchaseDate"
+        (valueChange)="pruchaseDataChange($event)" [disabled]="editMode === 'Edit'">
+        <app-datetime-message></app-datetime-message>
+      </kendo-datepicker>
+    </div>
+  </div>
+  <div class="item">
+    <span class="itemTitle">備註</span>
+    <div>
+      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入" [disabled]="editMode === 'Edit'"></textarea>
+    </div>
+  </div>
+  <div class="item">
+    <div>
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="5"
+        [pageable]="true" [sortable]="true" [navigable]="true">
+        <ng-template kendoGridToolbarTemplate>
+          <button kendoGridAddCommand class="modalBtn Blue">新增項目</button>
+        </ng-template>
+        <kendo-grid-column field="pattern" title="型號"></kendo-grid-column>
+        <kendo-grid-column field="machineId" title="機號">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+            <!-- 檢查是否處於編輯模式，如果是，則禁用編輯元素 -->
+            <input kendoTextBox [attr.disabled]="dataItem.inventoryId" [formControl]="formGroup.get('machineId')">
+          </ng-template>
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{ dataItem.machineId }}
+          </ng-template>
+        </kendo-grid-column>
+        <!-- <kendo-grid-column field="brand" title="品牌"></kendo-grid-column> -->
+        <kendo-grid-column field="price" editor="numeric" title="價錢"></kendo-grid-column>
+
+        <kendo-grid-column field="brand" title="品牌" [width]="150">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+            <kendo-dropdownlist [data]="brandDDL" [formControl]="formGroup.get('brand')">
+            </kendo-dropdownlist>
+          </ng-template>
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{ dataItem.brand }}
+          </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-command-column title="操作" [width]="220">
+          <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem>
+            <button kendoGridEditCommand [primary]="true">編輯</button>
+            <button kendoGridRemoveCommand *ngIf="isDeleteBtnShow(dataItem.status)">刪除</button>
+            <button kendoGridSaveCommand [disabled]="formGroup.invalid">
+              {{ isNew ? "新增" : "修改" }}
+            </button>
+            <button kendoGridCancelCommand>
+              {{ isNew ? "取消" : "取消" }}
+            </button>
+          </ng-template>
+        </kendo-grid-command-column>
+      </kendo-grid>
+    </div>
+  </div>
+  <div class="modal-footer textCenter">
+    <button class="modalBtn Blue" *ngIf="this.editMode=='Edit'" (click)="update()">修改</button>
+    <button class="modalBtn Blue"  *ngIf="this.editMode=='Add'" (click)="save()">新增</button>
+    <button class="modalBtn Gray" (click)="cancel()">關閉</button>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="block">
+  <div class="content half paddingTop0">
+    <div class="item">
+      <span class="itemTitle">型號</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.pattern" placeholder="請輸入">
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">機號</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.machineId" placeholder="請輸入">
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">品牌</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.brand" placeholder="請輸入">
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">狀態</span>
+      <div>
+        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.status" [data]="statusDDL">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+    <div class="item itemBlock textCenter">
+      <button class="lBtn Blue" (click)="search()">查 詢</button>
+      <button class="lBtn Gray" (click)="reset()">清 除</button>
+    </div>
+  </div>
+
+  <div class="content padding5">
+    <kendo-grid #grid
+    [data]="view | async"
+    [pageSize]="gridState.take"
+    [skip]="gridState.skip"
+    [sort]="gridState.sort"
+    [pageable]="_PAGESIZE"
+    [sortable]="true"
+    [resizable]="true"
+    (dataStateChange)="onStateChange($event)"
+    [navigable]="true"
+    [filter]="filter"
+    [filterable]="'menu'"
+    (filterChange)="filterChange($event)"
+  >
+      <app-grid-filter-message></app-grid-filter-message>
+      <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="custom-control custom-switch">
+            <button class="sBtn Yellow" *ngIf="dataItem.purchaseOrderId" (click)="openPurchaseModal(dataItem)">進 貨 單</button>
+            <button class="sBtn Red" *ngIf="dataItem.shipOrderId"  (click)="openShipModal(dataItem)">出 貨 單</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="pattern" title="型號" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="machineId" title="機號" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="status" title="狀態" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="brand" title="品牌" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="price" title="價錢" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+    </kendo-grid>
+    <div *ngIf="service.isLoading" class="k-i-loading"></div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

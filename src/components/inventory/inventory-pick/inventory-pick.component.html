@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">庫存選擇</h4>
+  <button class="closeBtn" aria-label="Close" (click)="cancel()"><i class="icon-close" aria-hidden="true"></i></button>
+</div>
+<div class="content modalStyle">
+  <div class="item">
+    <span class="itemTitle essential">已勾選庫存 :</span>
+    <div>
+      <span class="nb-tag textLeft" *ngFor="let item of mySelection">{{item}}</span>
+    </div>
+  </div>
+  <div class="item">
+    <div>
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="inventorys" [pageSize]="5"
+        [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)" [pageable]="true"
+        [sortable]="true" [navigable]="true" [selectable]="{enabled: true, checkboxOnly: true }"
+        [kendoGridSelectBy]="'id'" [selectedKeys]="mySelection">
+        <kendo-grid-checkbox-column [showSelectAll]="true"></kendo-grid-checkbox-column>
+        <kendo-grid-column field="machineId" title="機號"></kendo-grid-column>
+        <kendo-grid-column field="pattern" title="型號"></kendo-grid-column>
+        <kendo-grid-column field="brand" title="品牌"></kendo-grid-column>
+        <kendo-grid-column field="price" title="價錢"></kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+  <div class="modal-footer textCenter">
+    <button class="modalBtn Blue" (click)="save()">送出</button>
+    <button class="modalBtn Gray" (click)="cancel()">關閉</button>
+  </div>
+</div>

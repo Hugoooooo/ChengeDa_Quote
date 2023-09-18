@@ -4,8 +4,7 @@
   <span class="version-css">{{version}}</span>
     <p class="nameCircle">{{this.domainProvider.getStorage('name')?.charAt(0)?.toUpperCase()}}</p>
     <div class="name">
-      <p>{{this.domainProvider.getStorage('roleName')}}</p>
-      <span>{{this.domainProvider.getStorage('name')}}</span>
+      <p>{{this.domainProvider.getUserInfo().name}}</p>
     </div>
     <button (click)="logout()"><i class="icon-shift-right"></i>登出</button>
 </div>
