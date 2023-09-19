@@ -34,23 +34,13 @@
   </div>
 
   <div class="content padding5">
-    <kendo-grid #grid
-    [data]="view | async"
-    [pageSize]="gridState.take"
-    [skip]="gridState.skip"
-    [sort]="gridState.sort"
-    [pageable]="_PAGESIZE"
-    [sortable]="true"
-    [resizable]="true"
-    (dataStateChange)="onStateChange($event)"
-    [navigable]="true"
-    [filter]="filter"
-    [filterable]="'menu'"
-    (filterChange)="filterChange($event)"
-  >
+    <kendo-grid #grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+      [pageable]="_PAGESIZE" [sortable]="true" [resizable]="true" (dataStateChange)="onStateChange($event)"
+      [navigable]="true" [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)">
       <app-grid-filter-message></app-grid-filter-message>
       <ng-template kendoGridToolbarTemplate>
-          <button class="lBtn Blue" (click)="openModal()">新增項目</button>
+        <button class="lBtn Blue" (click)="openModal()">新增項目</button>
+        <button class="lBtn Gray" style="float: right;" kendoGridExcelCommand>匯出</button>
       </ng-template>
       <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
         <ng-template kendoGridCellTemplate let-dataItem>
@@ -62,9 +52,11 @@
       </kendo-grid-column>
       <kendo-grid-column field="id" title="進貨單單號" width="100px"></kendo-grid-column>
       <kendo-grid-column field="type" title="類型" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="purchaseDate" title="進貨日期" width="150px" [format]="'yyyy/MM/dd HH:mm:ss'"></kendo-grid-column>
+      <kendo-grid-column field="purchaseDate" title="進貨日期" width="150px"
+        [format]="'yyyy/MM/dd HH:mm:ss'"></kendo-grid-column>
       <kendo-grid-column field="note" title="備註" width="250px" [format]="'HH:mm'"></kendo-grid-column>
       <kendo-grid-column field="createMember" title="建單人員" width="100px"></kendo-grid-column>
+      <kendo-grid-excel [fileName]="'進貨單列表.xlsx'"></kendo-grid-excel>
     </kendo-grid>
     <div *ngIf="service.isLoading" class="k-i-loading"></div>
   </div>

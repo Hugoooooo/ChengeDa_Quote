@@ -11,10 +11,10 @@
   </div>
   <div class="item">
     <div>
-      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="inventorys" [pageSize]="5"
-        [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)" [pageable]="true"
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="inventorys" [pageSize]="10" [pageable]="_PAGESIZE"
+        [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)"
         [sortable]="true" [navigable]="true" [selectable]="{enabled: true, checkboxOnly: true }"
-        [kendoGridSelectBy]="'id'" [selectedKeys]="mySelection">
+        [kendoGridSelectBy]="'machineId'" [selectedKeys]="mySelection">
         <kendo-grid-checkbox-column [showSelectAll]="true"></kendo-grid-checkbox-column>
         <kendo-grid-column field="machineId" title="機號"></kendo-grid-column>
         <kendo-grid-column field="pattern" title="型號"></kendo-grid-column>

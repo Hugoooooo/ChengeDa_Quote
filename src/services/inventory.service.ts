@@ -12,6 +12,7 @@ const cloneData = (data: any[]) => data.map(item => Object.assign({}, item));
 const QueryAPI = environment.apiUrl + '/inventory/getInventoryList';
 const GetPurchaseOrderAPI = environment.apiUrl + '/inventory/getPurchaseOrderById?orderId=';
 const GetShipOrderAPI = environment.apiUrl + '/inventory/getShipOrderById?orderId=';
+const ImportAPI = environment.apiUrl + '/inventory/importInventory';
 
 export class GetListFormData {
   pattern: string;
@@ -23,6 +24,7 @@ export class GetListFormData {
   providedIn: 'root'
 })
 export class InventoryService extends BehaviorSubject<any[]> {
+  public aaa = 123;
   public isLoading = false;
   public data: any[] = [];
   public originalData: any[] = [];
@@ -65,7 +67,7 @@ export class InventoryService extends BehaviorSubject<any[]> {
 
   fetch(): Observable<any[]> {
     this.isLoading = true;
-    const api = `${QueryAPI}?brand=${this.fomrdata.brand || ''}&pattern=${this.fomrdata.pattern || ''}&machineId=${this.fomrdata.machineId || ''}&status=${this.fomrdata.status || ''}` ;
+    const api = `${QueryAPI}?brand=${this.fomrdata.brand || ''}&pattern=${this.fomrdata.pattern || ''}&machineId=${this.fomrdata.machineId || ''}&status=${this.fomrdata.status || ''}`;
     return this.http.get<any>(api)
       .pipe(map(res => {
         res.items.forEach(data => {
@@ -86,10 +88,24 @@ export class InventoryService extends BehaviorSubject<any[]> {
   getShipOrder(orderId: any): Observable<any> {
     return this.http.get<any>(GetShipOrderAPI + orderId)
       .pipe(map(res => {
-        if(res.detail){
+        if (res.detail) {
           res.detail.shipDate = new Date(res.detail.shipDate);
         }
         return res.detail;
+      }));
+  }
+
+  import(data: any): Observable<any> {
+    return this.http.post<any>(ImportAPI, data)
+      .pipe(map(res => {
+        let isSuccess = !res.isError;
+        Swal.fire({
+          confirmButtonText: '確定',
+          icon: isSuccess ? 'success' : 'error',
+          title: '通知',
+          html: res.message
+        });
+        return res.items;
       }));
   }
 

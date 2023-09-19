@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEvent, CreateFormGroupArgs, GridDataResult } from '@progress/kendo-angular-grid';
@@ -11,6 +11,7 @@ import { PurchaseOrderService } from 'src/services/purchase-order.service';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
 import { DomainProvider } from 'src/providers/domainProvider';
+import { InventoryService } from 'src/services/inventory.service';
 
 @Component({
   selector: 'app-purchase-add',
@@ -20,13 +21,15 @@ import { DomainProvider } from 'src/providers/domainProvider';
 
 
 export class PurchaseAddComponent implements OnInit {
+  @ViewChild('fileInput') fileInput: ElementRef;
+  public _PAGESIZE = PageSize;
   public purchaseTypeDDL = PuchaseTypeDDL;
   public purchaseDate: any;
   public note: any;
   public formData = new AddPurchaseOrderModel();
   public formGroup: FormGroup = this.formBuilder.group({
     id: null,
-    inventoryId:'',
+    inventoryId: '',
     pattern: '',
     machineId: '',
     brand: '',
@@ -39,6 +42,7 @@ export class PurchaseAddComponent implements OnInit {
   editMode: any;
   constructor(
     public service: PurchaseOrderService,
+    public invService: InventoryService,
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     public domainProvider: DomainProvider,
@@ -68,6 +72,23 @@ export class PurchaseAddComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
+  upload(event) {
+    if (event.target.files.length > 0) {
+      const formData = new FormData();
+      formData.append('file', event.target.files[0]);
+      this.invService.import(formData).subscribe(ret => {
+        if (ret) {
+          this.formData.items = this.formData.items.concat(ret);
+        }
+      })
+    }
+  }
+
+  openFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+
   save() {
     if (!this.check()) {
       return;
@@ -81,7 +102,7 @@ export class PurchaseAddComponent implements OnInit {
         title: '通知',
         html: ret.message
       });
-      if(!ret.isError){
+      if (!ret.isError) {
         this.saveItem.emit(true);
         this.activeModal.dismiss();
       }
@@ -102,7 +123,7 @@ export class PurchaseAddComponent implements OnInit {
         title: '通知',
         html: ret.message
       });
-      if(!ret.isError){
+      if (!ret.isError) {
         this.saveItem.emit(true);
         this.activeModal.dismiss();
       }

@@ -12,7 +12,8 @@
   <div class="item">
     <span class="itemTitle essential">進貨單類型</span>
     <div>
-      <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.type" [data]="purchaseTypeDDL"></kendo-dropdownlist>
+      <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.type"
+        [data]="purchaseTypeDDL"></kendo-dropdownlist>
     </div>
   </div>
   <div class="item">
@@ -27,15 +28,19 @@
   <div class="item">
     <span class="itemTitle">備註</span>
     <div>
-      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入" [disabled]="editMode === 'Edit'"></textarea>
+      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入"
+        [disabled]="editMode === 'Edit'"></textarea>
     </div>
   </div>
   <div class="item">
     <div>
-      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="5"
-        [pageable]="true" [sortable]="true" [navigable]="true">
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="10" [pageable]="_PAGESIZE"
+         [sortable]="true" [navigable]="true">
         <ng-template kendoGridToolbarTemplate>
-          <button kendoGridAddCommand class="modalBtn Blue">新增項目</button>
+          <button kendoGridAddCommand class="modalBtn Blue" style="display: inline-block;">新增項目</button>
+          <button (click)="openFileInput()" class="modalBtn Gray" style="float: right;">匯入</button>
+          <input #fileInput style="display: none;" type="file" (change)="upload($event)" accept="*">
+
         </ng-template>
         <kendo-grid-column field="pattern" title="型號"></kendo-grid-column>
         <kendo-grid-column field="machineId" title="機號">
@@ -77,7 +82,7 @@
   </div>
   <div class="modal-footer textCenter">
     <button class="modalBtn Blue" *ngIf="this.editMode=='Edit'" (click)="update()">修改</button>
-    <button class="modalBtn Blue"  *ngIf="this.editMode=='Add'" (click)="save()">新增</button>
+    <button class="modalBtn Blue" *ngIf="this.editMode=='Add'" (click)="save()">新增</button>
     <button class="modalBtn Gray" (click)="cancel()">關閉</button>
   </div>
 </div>

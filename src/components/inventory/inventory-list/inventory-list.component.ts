@@ -13,6 +13,7 @@ import { PurchaseAddComponent } from '../purchase-add/purchase-add.component';
 import { AuthService } from 'src/services/auth.service';
 import { ShipAddComponent } from '../ship-add/ship-add.component';
 import { GetListFormData, InventoryService } from 'src/services/inventory.service';
+import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 @Component({
   selector: 'app-inventory-list',
   templateUrl: './inventory-list.component.html',

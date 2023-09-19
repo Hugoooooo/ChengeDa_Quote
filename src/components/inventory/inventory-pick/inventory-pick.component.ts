@@ -22,6 +22,7 @@ import { DomainProvider } from 'src/providers/domainProvider';
 
 export class InventoryPickComponent implements OnInit {
   public mySelection: any[] = [];
+  public _PAGESIZE = PageSize;
   public filter: CompositeFilterDescriptor;
   public purchaseDate: any;
   public note: any;
@@ -47,7 +48,7 @@ export class InventoryPickComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mySelection = this.details.map(p => p.inventoryId);
+    this.mySelection = this.details.map(p => p.machineId);
   }
 
   cancel() {
@@ -55,7 +56,7 @@ export class InventoryPickComponent implements OnInit {
   }
 
   save() {
-    let ret = this.inventorys.filter(p => this.mySelection.includes(p.id));
+    let ret = this.inventorys.filter(p => this.mySelection.includes(p.machineId));
     this.saveItem.emit(ret);
     this.activeModal.close();
   }

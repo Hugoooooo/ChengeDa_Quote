@@ -29,6 +29,8 @@
         <label for="taxType-i">內含</label>
         <input class="input" type="radio" name="taxType" id="taxType-o" [value]="'外加'" [(ngModel)]="formData.taxType">
         <label for="taxType-o">外加</label>
+        <input class="input" type="radio" name="taxType" id="taxType-n" [value]="'不需要'" [(ngModel)]="formData.taxType">
+        <label for="taxType-n">不需要</label>
       </div>
     </div>
   </div>
@@ -61,8 +63,8 @@
   </div>
   <div class="item">
     <div>
-      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="5"
-        [pageable]="true" [sortable]="true" [navigable]="true">
+      <kendo-grid [kendoGridReactiveEditing]="createFormGroup" [kendoGridBinding]="formData.items" [pageSize]="10" [pageable]="_PAGESIZE"
+      [filterable]="'menu'" [sortable]="true" [navigable]="true">
         <ng-template kendoGridToolbarTemplate>
           <button class="modalBtn Blue" (click)="openModal()">編輯項目</button>
         </ng-template>
@@ -70,7 +72,6 @@
         <kendo-grid-column field="machineId" title="機號"></kendo-grid-column>
         <kendo-grid-column field="price" editor="numeric" title="價錢"></kendo-grid-column>
         <kendo-grid-column field="brand" editor="品牌" title="價錢"></kendo-grid-column>
-
       </kendo-grid>
     </div>
   </div>

@@ -1,7 +1,7 @@
 import { SweetAlertOptions } from 'sweetalert2';
 
 // Grid 屬性
-export const PageSize = { pageSizes: [10, 15, 20, 50, 100, 200, 500, 1000] };
+export const PageSize = { pageSizes: [10, 15, 20, 50, 100, 200, 500] };
 
 export const TokenPrefix = 'G-';
 export const SwalStopOption: SweetAlertOptions = {

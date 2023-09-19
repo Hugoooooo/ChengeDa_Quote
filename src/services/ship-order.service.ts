@@ -17,6 +17,7 @@ const GetInventoryAPI = environment.apiUrl + '/inventory/getInventoryStock';
 
 
 export class GetListFormData {
+  customer: string;
   orderId: string;
   sDate: any;
   eDate: any;
@@ -70,7 +71,7 @@ export class ShipOrderService extends BehaviorSubject<any[]> {
     this.isLoading = true;
     let sDate = this.datePipe.transform(this.fomrdata.sDate, "yyyy/MM/dd 00:00:00");
     let eDate = this.datePipe.transform(this.fomrdata.eDate, "yyyy/MM/dd 23:59:59");
-    const api = `${QueryAPI}?orderId=${this.fomrdata.orderId || ''}&sDate=${sDate || ''}&eDate=${eDate || ''}`;
+    const api = `${QueryAPI}?customer=${this.fomrdata.customer || ''}&orderId=${this.fomrdata.orderId || ''}&sDate=${sDate || ''}&eDate=${eDate || ''}`;
     return this.http.get<any>(api)
       .pipe(map(res => {
         res.items.forEach(data => {

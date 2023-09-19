@@ -47,10 +47,13 @@
     (filterChange)="filterChange($event)"
   >
       <app-grid-filter-message></app-grid-filter-message>
+      <ng-template kendoGridToolbarTemplate>
+        <button class="lBtn Gray" style="float: right;" kendoGridExcelCommand>匯出</button>
+      </ng-template>
       <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="custom-control custom-switch">
-            <button class="sBtn Yellow" *ngIf="dataItem.purchaseOrderId" (click)="openPurchaseModal(dataItem)">進 貨 單</button>
+            <button class="sBtn Green" *ngIf="dataItem.purchaseOrderId" (click)="openPurchaseModal(dataItem)">進 貨 單</button>
             <button class="sBtn Red" *ngIf="dataItem.shipOrderId"  (click)="openShipModal(dataItem)">出 貨 單</button>
           </div>
         </ng-template>
@@ -60,6 +63,7 @@
       <kendo-grid-column field="status" title="狀態" width="100px"></kendo-grid-column>
       <kendo-grid-column field="brand" title="品牌" width="100px"></kendo-grid-column>
       <kendo-grid-column field="price" title="價錢" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+      <kendo-grid-excel [fileName]="'庫存列表.xlsx'"></kendo-grid-excel>
     </kendo-grid>
     <div *ngIf="service.isLoading" class="k-i-loading"></div>
   </div>

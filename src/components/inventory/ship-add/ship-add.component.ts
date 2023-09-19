@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEvent, CreateFormGroupArgs, GridDataResult } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
-import { OrderTypeDDL, PageSize, ShipTypeDDL } from 'src/app/app.constant';
+import { PageSize, ShipTypeDDL } from 'src/app/app.constant';
 import { AddPurchaseDetail, AddPurchaseOrderModel, AddShipOrderModel } from 'src/models/form/form.model';
 import { PurchaseOrderService } from 'src/services/purchase-order.service';
 import Swal from 'sweetalert2';
@@ -22,6 +22,7 @@ import { ShipOrderService } from 'src/services/ship-order.service';
 
 
 export class ShipAddComponent implements OnInit {
+  public _PAGESIZE = PageSize;
   public shipTypeDDL = ShipTypeDDL;
   public shipDate: any;
   public inventorys: any[];
@@ -146,15 +147,9 @@ export class ShipAddComponent implements OnInit {
     if (!this.formData.customer) {
       errArray.push('客戶欄位不能為空值');
     }
-    if (!this.formData.amount && this.formData.type =='出貨') {
-      errArray.push('出貨金額欄位不能為空值');
-    }
+
     if (!this.formData.taxType) {
       errArray.push('稅率計算欄位不能為空值');
-    }
-
-    if (!this.formData.invoice) {
-      errArray.push('發票欄位不能為空值');
     }
 
     if (this.formData.items.length === 0) {
