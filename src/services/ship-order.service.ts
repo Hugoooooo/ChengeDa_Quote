@@ -21,6 +21,7 @@ export class GetListFormData {
   orderId: string;
   sDate: any;
   eDate: any;
+  status:string;
 }
 
 @Injectable({
@@ -71,7 +72,8 @@ export class ShipOrderService extends BehaviorSubject<any[]> {
     this.isLoading = true;
     let sDate = this.datePipe.transform(this.fomrdata.sDate, "yyyy/MM/dd 00:00:00");
     let eDate = this.datePipe.transform(this.fomrdata.eDate, "yyyy/MM/dd 23:59:59");
-    const api = `${QueryAPI}?customer=${this.fomrdata.customer || ''}&orderId=${this.fomrdata.orderId || ''}&sDate=${sDate || ''}&eDate=${eDate || ''}`;
+    let status = this.fomrdata.status == '全部' ? '': this.fomrdata.status;
+    const api = `${QueryAPI}?customer=${this.fomrdata.customer || ''}&orderId=${this.fomrdata.orderId || ''}&sDate=${sDate || ''}&eDate=${eDate || ''}&status=${status || ''}`;
     return this.http.get<any>(api)
       .pipe(map(res => {
         res.items.forEach(data => {

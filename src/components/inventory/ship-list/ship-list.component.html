@@ -32,6 +32,14 @@
         </kendo-datepicker>
       </div>
     </div>
+    <div class="item">
+      <span class="itemTitle">出貨單狀態</span>
+      <div>
+        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.status" [data]="shipStatusDDL"></kendo-dropdownlist>
+      </div>
+    </div>
+    <div class="item">
+    </div>
     <div class="item itemBlock textCenter">
       <button class="lBtn Blue" (click)="search()">查 詢</button>
       <button class="lBtn Gray" (click)="reset()">清 除</button>
@@ -55,14 +63,17 @@
           </div>
         </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="id" title="出貨單單號" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="id" title="出貨單單號" width="150px"></kendo-grid-column>
+      <kendo-grid-column field="type" title="類型" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="status" title="狀態" width="100px"></kendo-grid-column>
       <kendo-grid-column field="customer" title="客戶名稱" width="100px"></kendo-grid-column>
+      <!-- <kendo-grid-column field="tax_type" title="稅率方式" width="100px"></kendo-grid-column> -->
+      <!-- <kendo-grid-column field="invoice" title="發票號碼" width="100px"></kendo-grid-column> -->
       <kendo-grid-column field="amount" title="出貨金額" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="tax_type" title="稅率方式" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="invoice" title="發票號碼" width="100px"></kendo-grid-column>
       <kendo-grid-column field="shipDate" title="出貨日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+      <kendo-grid-column field="invoice_amount" title="發票金額" width="100px"></kendo-grid-column>
       <kendo-grid-column field="createMember" title="建單人員" width="100px"></kendo-grid-column>
-      <kendo-grid-column field="note" title="備註" width="250px" [format]="'HH:mm'"></kendo-grid-column>
+      <!-- <kendo-grid-column field="note" title="備註" width="250px" [format]="'HH:mm'"></kendo-grid-column> -->
       <kendo-grid-excel [fileName]="'出貨列表.xlsx'"></kendo-grid-excel>
     </kendo-grid>
     <div *ngIf="service.isLoading" class="k-i-loading"></div>

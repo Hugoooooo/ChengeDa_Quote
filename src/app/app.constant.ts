@@ -27,7 +27,8 @@ export const SwalDeleteOption: SweetAlertOptions = {
 }
 export const PuchaseTypeDDL = ['進貨','他地代送','自載'];
 export const ShipTypeDDL = ['出貨','他地代收','他人自載'];
-export const InventoryStatusDDL = ['','庫存','已出貨','已退貨'];
+export const InventoryStatusDDL = ['庫存','已出貨','已退貨'];
+export const ShipStatusDDL = ['未收款','已收款'];
 
 export const Business = [
   {

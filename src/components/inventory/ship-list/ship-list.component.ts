@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompositeFilterDescriptor, State, process } from '@progress/kendo-data-query';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Observable } from 'rxjs';
-import { PageSize, SwalDeleteOption } from 'src/app/app.constant';
+import { PageSize, ShipStatusDDL, SwalDeleteOption } from 'src/app/app.constant';
 import { DatePipe } from '@angular/common';
 import { DomainProvider } from 'src/providers/domainProvider';
 import { PunchService } from 'src/services/punch.service';
@@ -21,6 +21,7 @@ import { GetListFormData,ShipOrderService } from 'src/services/ship-order.servic
 
 export class ShipListComponent implements OnInit {
   public formData: GetListFormData;
+  public shipStatusDDL = ['全部'].concat(ShipStatusDDL);
   public startDate: any;
   public endDate: any;
   public filter: CompositeFilterDescriptor;
@@ -67,7 +68,7 @@ export class ShipListComponent implements OnInit {
 
     this.formData.sDate = this.datePipe.transform(this.startDate, 'yyyy/MM/dd');
     this.formData.eDate = this.datePipe.transform(this.endDate, 'yyyy/MM/dd');
-
+    this.formData.status = this.shipStatusDDL[0];
   }
 
 

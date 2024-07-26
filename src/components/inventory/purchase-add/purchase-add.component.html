@@ -20,7 +20,7 @@
     <span class="itemTitle essential">進貨日期</span>
     <div>
       <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="purchaseDate"
-        (valueChange)="pruchaseDataChange($event)" [disabled]="editMode === 'Edit'">
+        (valueChange)="pruchaseDataChange($event)">
         <app-datetime-message></app-datetime-message>
       </kendo-datepicker>
     </div>
@@ -28,8 +28,7 @@
   <div class="item">
     <span class="itemTitle">備註</span>
     <div>
-      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入"
-        [disabled]="editMode === 'Edit'"></textarea>
+      <textarea type="text" id="moneyPerEach" name="moneyPerEach" [(ngModel)]="formData.note" placeholder="請輸入"></textarea>
     </div>
   </div>
   <div class="item">

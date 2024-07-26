@@ -13,6 +13,8 @@ const QueryAPI = environment.apiUrl + '/inventory/getInventoryList';
 const GetPurchaseOrderAPI = environment.apiUrl + '/inventory/getPurchaseOrderById?orderId=';
 const GetShipOrderAPI = environment.apiUrl + '/inventory/getShipOrderById?orderId=';
 const ImportAPI = environment.apiUrl + '/inventory/importInventory';
+const PreSaleAPI = environment.apiUrl + '/inventory/updatePreSaleFlag';
+
 
 export class GetListFormData {
   pattern: string;
@@ -67,12 +69,15 @@ export class InventoryService extends BehaviorSubject<any[]> {
 
   fetch(): Observable<any[]> {
     this.isLoading = true;
-    const api = `${QueryAPI}?brand=${this.fomrdata.brand || ''}&pattern=${this.fomrdata.pattern || ''}&machineId=${this.fomrdata.machineId || ''}&status=${this.fomrdata.status || ''}`;
+    let status = this.fomrdata.status == '全部' ? '': this.fomrdata.status;
+    const api = `${QueryAPI}?brand=${this.fomrdata.brand || ''}&pattern=${this.fomrdata.pattern || ''}&machineId=${this.fomrdata.machineId || ''}&status=${status || ''}`;
     return this.http.get<any>(api)
       .pipe(map(res => {
         res.items.forEach(data => {
+          data.preSale = data.preSaleFlag? 'V' : '';
           data.purchaseDate = new Date(data.purchaseDate);
         });
+        console.log(res.items);
         return res.items;
       }));
   }
@@ -106,6 +111,20 @@ export class InventoryService extends BehaviorSubject<any[]> {
           html: res.message
         });
         return res.items;
+      }));
+  }
+
+  preSale(data: any): Observable<any> {
+    return this.http.post<any>(PreSaleAPI, data)
+      .pipe(map(res => {
+        let isSuccess = !res.isError;
+        Swal.fire({
+          confirmButtonText: '確定',
+          icon: isSuccess ? 'success' : 'error',
+          title: '通知',
+          html: res.message
+        });
+        return res;
       }));
   }
 

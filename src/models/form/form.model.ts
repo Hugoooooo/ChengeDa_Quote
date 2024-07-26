@@ -64,13 +64,29 @@ export class AddPurchaseOrderModel {
 export class AddShipOrderModel {
   orderId: string;
   type:string;
+  status:string;
   customer: string;
   amount: number;
+  invoice_amount: number;
   taxType: string;
   invoice: string;
   note: string;
   shipDate: string;
   items: AddPurchaseDetail[] = [];
+  inventoryIds: string[] = [];
+}
+
+export class UpdateShipOrderModel {
+  orderId: string;
+  type:string;
+  status:string;
+  customer: string;
+  amount: number;
+  invoice_amount: number;
+  taxType: string;
+  invoice: string;
+  note: string;
+  shipDate: string;
   inventoryIds: string[] = [];
 }
 

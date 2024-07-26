@@ -21,7 +21,7 @@ import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 })
 
 export class InventoryListComponent implements OnInit {
-  public statusDDL = InventoryStatusDDL;
+  public statusDDL = ['全部'].concat(InventoryStatusDDL);
   public formData: GetListFormData;
   public startDate: any;
   public endDate: any;
@@ -54,6 +54,7 @@ export class InventoryListComponent implements OnInit {
 
   pagePrepare() {
     this.formData = new GetListFormData();
+    this.formData.status = this.statusDDL[0];
   }
 
 
@@ -135,6 +136,17 @@ export class InventoryListComponent implements OnInit {
           this.service.read();
         }
       });
+    });
+  }
+
+  saleInventory(dataItem) {
+    this.domainProvider.showMask();
+    this.service.preSale({ 'inventoryId': dataItem.id }).subscribe(ret => {
+      this.domainProvider.hideMask();
+      if (!ret.isError) {
+        this.service.reset();
+        this.service.read();
+      }
     });
   }
 

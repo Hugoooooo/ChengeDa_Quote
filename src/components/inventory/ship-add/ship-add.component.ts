@@ -5,8 +5,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEvent, CreateFormGroupArgs, GridDataResult } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
-import { PageSize, ShipTypeDDL } from 'src/app/app.constant';
-import { AddPurchaseDetail, AddPurchaseOrderModel, AddShipOrderModel } from 'src/models/form/form.model';
+import { PageSize, ShipStatusDDL, ShipTypeDDL } from 'src/app/app.constant';
+import { AddPurchaseDetail, AddPurchaseOrderModel, AddShipOrderModel, UpdateShipOrderModel } from 'src/models/form/form.model';
 import { PurchaseOrderService } from 'src/services/purchase-order.service';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
@@ -24,6 +24,7 @@ import { ShipOrderService } from 'src/services/ship-order.service';
 export class ShipAddComponent implements OnInit {
   public _PAGESIZE = PageSize;
   public shipTypeDDL = ShipTypeDDL;
+  public shipStatusDDL = ShipStatusDDL;
   public shipDate: any;
   public inventorys: any[];
   public note: any;
@@ -67,6 +68,7 @@ export class ShipAddComponent implements OnInit {
 
         if (this.editMode == 'Add') {
           this.shipDate = new Date();
+          this.formData.status = this.shipStatusDDL[0];
           this.formData.type = this.shipTypeDDL[0];
           this.formData.shipDate = this.datePipe.transform(this.shipDate, 'yyyy/MM/dd');
           this.formData.note = '';
@@ -74,14 +76,17 @@ export class ShipAddComponent implements OnInit {
         } else {
           this.formData.orderId = this.order.id;
           this.formData.type = this.order.type;
+          this.formData.status = this.order.status;
           this.formData.customer = this.order.customer;
           this.formData.amount = this.order.amount;
+          this.formData.invoice_amount = this.order.invoice_amount;
           this.formData.taxType = this.order.tax_type;
           this.formData.invoice = this.order.invoice;
           this.formData.note = this.order.note;
           this.shipDate = this.order.shipDate;
           this.formData.shipDate = this.datePipe.transform(this.shipDate, 'yyyy/MM/dd');
           this.formData.items = this.order.detail;
+          this.formData.inventoryIds = this.order.detail.map(p => p.inventoryId);
         }
       }
     });
@@ -118,7 +123,7 @@ export class ShipAddComponent implements OnInit {
     if (!this.check()) {
       return;
     }
-    this.formData.inventoryIds = this.formData.items.map(p => p.id);
+
     this.domainProvider.showMask();
     this.service.updatePurchaseOrder(this.formData).subscribe(ret => {
       this.domainProvider.hideMask();
@@ -155,8 +160,6 @@ export class ShipAddComponent implements OnInit {
     if (this.formData.items.length === 0) {
       errArray.push('至少要添加一個進貨項目');
     }
-
-
 
     if (errArray.length > 0) {
       isPass = false;
@@ -212,6 +215,7 @@ export class ShipAddComponent implements OnInit {
     modalRef.componentInstance.saveItem.subscribe((data) => {
       if (data) {
         this.formData.items = data;
+        this.formData.inventoryIds = data.map(p => p.id);
         this.service.reset();
         this.service.read();
       }
