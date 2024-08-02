@@ -36,7 +36,7 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
     // this.domainProvider.showMask();
   }
 
-  initParamList(){
+  initParamList() {
     this.domainProvider.showMask();
     this.quoteService.getParameters().subscribe({
       next: (ret) => {
@@ -45,7 +45,7 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
         if (isSuccess) {
           this.dataItems = ret.datas;
           this.addQuote();
-        }else{
+        } else {
           Swal.fire({
             confirmButtonText: '確定',
             icon: isSuccess ? 'success' : 'error',
@@ -63,6 +63,31 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
     this.quoteList.push(addItem);
   }
 
+  sortUp(index: number) {
+    let newList = this.moveItem(index, 'up');
+    this.quoteList = newList;
+  }
+
+  sortDown(index: number) {
+    let newList = this.moveItem(index, 'down');
+    this.quoteList = newList;
+
+  }
+
+  moveItem(index: number, direction: 'up' | 'down') {
+    const list = [...this.quoteList];
+
+    // 計算要移動到的位置
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+
+    // 檢查邊界條件
+    if (newIndex < 0 || newIndex >= list.length) return list;
+
+    // 交換項目
+    [list[index], list[newIndex]] = [list[newIndex], list[index]];
+
+    return list;
+  };
 
   // 移除條件
   removeItem(index: number): void {
@@ -113,7 +138,7 @@ export class QuoteExportComponent extends BaseComponent implements OnInit {
             this.form.companyTax = ret.companyTax;
             this.form.fax = ret.fax;
             this.form.create_user = ret.create_user;
-            ret.items = _.orderBy(ret.items,['idx'],['asc']);
+            ret.items = _.orderBy(ret.items, ['idx'], ['asc']);
             ret.items.forEach(item => {
               const addItem = new QuoteViewModel();
               addItem.amount = item.amount;

@@ -96,7 +96,13 @@
       <div class="editList plural border-bottom-1d" *ngFor="let quote of quoteList; let i = index">
         <div>
           <div class="content half paddingTop0">
-            <p class="blockSubTitle">條列項目區塊 - {{i + 1}}</p>
+            <div class="item itemBlock marginTop">
+              <span class="blockSubTitle">條列項目區塊 - {{i + 1}}</span>
+              <div style="width: initial;float: right;">
+                <button class="sBtn btnIbonGreen" *ngIf="i !== 0" (click)="sortUp(i)">↥</button>
+                <button class="sBtn btnIbonGreen" *ngIf="i !== (quoteList.length-1)" (click)="sortDown(i)">↧</button>
+              </div>
+            </div>
             <div class="item">
               <span class="itemTitle">品項</span>
               <div>
