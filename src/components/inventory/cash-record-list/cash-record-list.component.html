@@ -1,0 +1,76 @@
+<div class="block">
+  <div class="content half paddingTop0">
+    <div class="item">
+      <span class="itemTitle">出貨單單號</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.orderId" placeholder="請輸入">
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">客戶名稱</span>
+      <div>
+        <input class="" type="text" [(ngModel)]="formData.customer" placeholder="請輸入">
+      </div>
+    </div>
+    <!-- 日期起 -->
+    <div class="item">
+      <span class="itemTitle essential">收款日期(起)</span>
+      <div>
+        <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="startDate"
+          (valueChange)="startTimeChange($event)">
+          <app-datetime-message></app-datetime-message>
+        </kendo-datepicker>
+      </div>
+    </div>
+    <!-- 日期迄 -->
+    <div class="item">
+      <span class="itemTitle essential">收款日期(迄)</span>
+      <div>
+        <kendo-datepicker [format]="'yyyy/MM/dd'" [placeholder]="''" [value]="endDate"
+          (valueChange)="endTimeChange($event)">
+          <app-datetime-message></app-datetime-message>
+        </kendo-datepicker>
+      </div>
+    </div>
+    <div class="item">
+      <span class="itemTitle">收款方式</span>
+      <div>
+        <kendo-dropdownlist [valuePrimitive]="true" [(ngModel)]="formData.method" [data]="cashMethodDDL"></kendo-dropdownlist>
+      </div>
+    </div>
+    <div class="item">
+    </div>
+    <div class="item itemBlock textCenter">
+      <button class="lBtn Blue" (click)="search()">查 詢</button>
+      <button class="lBtn Gray" (click)="reset()">清 除</button>
+    </div>
+  </div>
+
+  <div class="content padding5">
+    <kendo-grid #grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+      [pageable]="_PAGESIZE" [sortable]="true" [resizable]="true" (dataStateChange)="onStateChange($event)"
+      [navigable]="true" [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)">
+      <app-grid-filter-message></app-grid-filter-message>
+      <ng-template kendoGridToolbarTemplate>
+        <h5 style="float: right;color: red;font-weight: bolder;" >總金額:{{this.totalAmount}}</h5>
+      </ng-template>
+      <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="custom-control custom-switch">
+            <button class="sBtn Yellow" (click)="openModal(dataItem)">收 款</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="customer" title="客戶名稱" width="150px"></kendo-grid-column>
+      <kendo-grid-column field="orderId" title="出貨單單號" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="amount" title="收款金額" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="method" title="收款方式" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="payDate" title="收款日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+      <kendo-grid-column field="createMember" title="建單人員" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="updateMember" title="異動人員" width="100px"></kendo-grid-column>
+      <kendo-grid-column field="updateDate" title="異動日期" width="150px" [format]="'yyyy/MM/dd'"></kendo-grid-column>
+    </kendo-grid>
+    <div *ngIf="service.isLoading" class="k-i-loading"></div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>

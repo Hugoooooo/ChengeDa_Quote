@@ -40,7 +40,9 @@ export const APPPATH = {
   InventoryFlow:{
     InventoryList:'inventory-list',
     PurchaseList:'purchase-list',
-    ShipList:'ship-list'
+    ShipList:'ship-list',
+    CashOrderList:'cash-order-list',
+    CashRecordList:'cash-record-list'
   }
 
 };

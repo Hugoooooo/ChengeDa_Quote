@@ -79,6 +79,16 @@ export class SidebarComponent implements OnInit {
           id: 8,
           url: APPPATH.InventoryFlow.ShipList,
           name: '出貨單列表'
+        },
+        {
+          id: 9,
+          url: APPPATH.InventoryFlow.CashOrderList,
+          name: '出貨單收款'
+        },
+        {
+          id: 10,
+          url: APPPATH.InventoryFlow.CashRecordList,
+          name: '收款紀錄'
         }
       ]
     },

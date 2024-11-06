@@ -68,7 +68,6 @@ export class ShipAddComponent implements OnInit {
 
         if (this.editMode == 'Add') {
           this.shipDate = new Date();
-          this.formData.status = this.shipStatusDDL[0];
           this.formData.type = this.shipTypeDDL[0];
           this.formData.shipDate = this.datePipe.transform(this.shipDate, 'yyyy/MM/dd');
           this.formData.note = '';
@@ -76,7 +75,6 @@ export class ShipAddComponent implements OnInit {
         } else {
           this.formData.orderId = this.order.id;
           this.formData.type = this.order.type;
-          this.formData.status = this.order.status;
           this.formData.customer = this.order.customer;
           this.formData.amount = this.order.amount;
           this.formData.invoice_amount = this.order.invoice_amount;

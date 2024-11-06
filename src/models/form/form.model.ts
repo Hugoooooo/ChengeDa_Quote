@@ -55,7 +55,7 @@ export class DayoffEditModel {
 
 export class AddPurchaseOrderModel {
   orderId: string;
-  type:string;
+  type: string;
   note: string;
   purchaseDate: string;
   items: AddPurchaseDetail[] = []
@@ -63,8 +63,7 @@ export class AddPurchaseOrderModel {
 
 export class AddShipOrderModel {
   orderId: string;
-  type:string;
-  status:string;
+  type: string;
   customer: string;
   amount: number;
   invoice_amount: number;
@@ -78,8 +77,8 @@ export class AddShipOrderModel {
 
 export class UpdateShipOrderModel {
   orderId: string;
-  type:string;
-  status:string;
+  type: string;
+  status: string;
   customer: string;
   amount: number;
   invoice_amount: number;
@@ -108,4 +107,15 @@ export class InventroyPickModel {
   isPick: any;
   pattern: string;
   brand: string;
+}
+
+export class CashRecordDetail {
+  id: any;
+  amount: any;
+  method: any;
+  payDate: any;
+  constructor(method: string = "", payDate) {
+    this.method = method;
+    this.payDate = payDate
+  }
 }

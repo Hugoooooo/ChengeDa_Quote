@@ -41,6 +41,9 @@ import { PurchaseAddComponent } from 'src/components/inventory/purchase-add/purc
 import { ShipAddComponent } from 'src/components/inventory/ship-add/ship-add.component';
 import { InventoryPickComponent } from 'src/components/inventory/inventory-pick/inventory-pick.component';
 import { InventoryListComponent } from 'src/components/inventory/inventory-list/inventory-list.component';
+import { CashOrderListComponent } from 'src/components/inventory/cash-order-list/cash-order-list.component';
+import { CashRecordEditComponent } from 'src/components/inventory/cash-record-edit/cash-record-edit.component';
+import { CashRecordListComponent } from 'src/components/inventory/cash-record-list/cash-record-list.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { InventoryListComponent } from 'src/components/inventory/inventory-list/
     ShipAddComponent,
     ShipListComponent,
     InventoryPickComponent,
-    InventoryListComponent
+    InventoryListComponent,
+    CashOrderListComponent,
+    CashRecordEditComponent,
+    CashRecordListComponent
   ],
   imports: [
     BrowserModule,

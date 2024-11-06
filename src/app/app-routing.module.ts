@@ -15,6 +15,8 @@ import { PuchCardRecordComponent } from 'src/components/puch-card/puch-card-reco
 import { PurchaseListComponent } from 'src/components/inventory/purchase-list/purchase-list.component';
 import { ShipListComponent } from 'src/components/inventory/ship-list/ship-list.component';
 import { InventoryListComponent } from 'src/components/inventory/inventory-list/inventory-list.component';
+import { CashOrderListComponent } from 'src/components/inventory/cash-order-list/cash-order-list.component';
+import { CashRecordListComponent } from 'src/components/inventory/cash-record-list/cash-record-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: APPPATH.Login, pathMatch: 'full' },
@@ -120,6 +122,20 @@ const routes: Routes = [
             component: ShipListComponent,
             data: {
               breadcrumb: '出貨單列表'
+            },
+          },
+          {
+            path: APPPATH.InventoryFlow.CashOrderList,
+            component: CashOrderListComponent,
+            data: {
+              breadcrumb: '出貨單收款'
+            }
+          },
+          {
+            path: APPPATH.InventoryFlow.CashRecordList,
+            component: CashRecordListComponent,
+            data: {
+              breadcrumb: '收款紀錄'
             }
           },
         ],
