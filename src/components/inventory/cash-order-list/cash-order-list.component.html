@@ -51,6 +51,9 @@
       [pageable]="_PAGESIZE" [sortable]="true" [resizable]="true" (dataStateChange)="onStateChange($event)"
       [navigable]="true" [filter]="filter" [filterable]="'menu'" (filterChange)="filterChange($event)">
       <app-grid-filter-message></app-grid-filter-message>
+      <ng-template kendoGridToolbarTemplate>
+        <button class="lBtn Gray" style="float: right;" kendoGridExcelCommand>匯出</button>
+      </ng-template>
       <kendo-grid-column field="control" title="操作" [filterable]="false" width="150px">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="custom-control custom-switch">
